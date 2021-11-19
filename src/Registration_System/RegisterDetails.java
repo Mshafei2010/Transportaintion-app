@@ -17,6 +17,10 @@ public class RegisterDetails {
     private String NationalID;
     private String DriverLicense ;
     //Constructors
+    public RegisterDetails(String Password, String UserName) {
+        this.Password = Password;
+        this.UserName = UserName;
+    }
     public RegisterDetails(String MoblieNumber, String Email, String Password, String UserName) {
         this.MoblieNumber = MoblieNumber;
         this.Email = Email;
