@@ -66,6 +66,15 @@ public class FavouriteAreas {
         File file = new File("Files to launch\\\\FavouriteAreas.txt");
         List<String> out = Files.lines(file.toPath()).filter(line -> !line.contains(area.getAName())).collect(Collectors.toList());
         Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+        List <String> fileStream = Files.readAllLines(Paths.get("Files to launch\\FavouriteAreas.txt"));
+        int numofLn = fileStream.size();
+        Scanner in = new Scanner(new File("Files to launch\\FavouriteAreas.txt"));
+        arr = new Area [numofLn] ;
+        int i = 0;
+        while(in.hasNextLine())
+            {
+                arr[i++].setAName(in.nextLine());
+            }
         }
         catch(Exception IO)
                 {
@@ -74,6 +83,21 @@ public class FavouriteAreas {
     
     }
     public Area[] getFavouriteAreas(){
+        try {
+        List <String> fileStream = Files.readAllLines(Paths.get("Files to launch\\FavouriteAreas.txt"));
+        int numofLn = fileStream.size();
+        Scanner in = new Scanner(new File("Files to launch\\FavouriteAreas.txt"));
+        arr = new Area [numofLn] ;
+        int i = 0;
+        while(in.hasNextLine())
+            {
+                arr[i++].setAName(in.nextLine());
+            }
+        }
+        catch(Exception IO)
+                {
+                    System.out.println("Getting Favoirte area do not work now");
+                }
         return arr;
     }
 }
