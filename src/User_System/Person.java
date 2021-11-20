@@ -11,6 +11,7 @@ public abstract class Person {
     private String Email;
     private String Password;
     private String UserName;
+    private Register register;
     
     //Constructors
     public Person(String MoblieNumber, String Email, String Password, String UserName) {
@@ -59,6 +60,7 @@ public abstract class Person {
     public String getUserName() {
         return UserName;
     }
+    public abstract boolean Signup(Register register );
     
     //login
     public abstract void login(String MoblieNumber, String Email, String Password, String UserName);
