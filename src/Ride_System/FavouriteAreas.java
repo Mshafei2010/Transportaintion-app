@@ -7,6 +7,7 @@ package Ride_System;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,6 +15,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 /**
@@ -52,7 +54,6 @@ public class FavouriteAreas {
         while(in.hasNextLine())
             {
                 arr[i++].setAName(in.nextLine());
-                System.out.println(arr[i-1]);
             }
         }
         catch(Exception IO)
@@ -60,13 +61,17 @@ public class FavouriteAreas {
                     System.out.println("Adding Favoirte area do not work now");
                 }
     }
-    public void deleteArea(Area area){
-		String lineToRemove = area.getAName();	 
-		try (Stream<String> stream = Files.lines(Paths.get("Files to launch\\FavouriteAreas.txt"))) { 
-			stream.filter(line->!line.trim().equals(lineToRemove)).forEach(System.out::println); 
-		} catch (Exception IO) {
+    public void deleteArea(Area area) throws IOException{
+        try{
+        File file = new File("Files to launch\\\\FavouriteAreas.txt");
+        List<String> out = Files.lines(file.toPath()).filter(line -> !line.contains(area.getAName())).collect(Collectors.toList());
+        Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+        }
+        catch(Exception IO)
+                {
                     System.out.println("Deleting Favoirte area do not work now");
-		} 
+                }
+    
     }
     public Area[] getFavouriteAreas(){
         return arr;
