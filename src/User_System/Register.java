@@ -11,6 +11,6 @@ package User_System;
  */
 public abstract class Register {
 
-   public abstract void Regist();
-
+   public abstract boolean Regist(Person person);
+     
 }

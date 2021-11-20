@@ -60,6 +60,15 @@ public abstract class Person {
     public String getUserName() {
         return UserName;
     }
+
+    public void setRegister(Register register) {
+        this.register = register;
+    }
+
+    public Register getRegister() {
+        return register;
+    }
+    
     public abstract boolean Signup(Register register );
     
     //login

@@ -5,6 +5,8 @@
  */
 package User_System;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Dell
@@ -13,6 +15,7 @@ public class Driver extends Person{
     
     private String NationalID;
     private String DriverLicense ;
+    private boolean state;
 //favoriteareas:FavouriteArea[]
 //-ridesHistory:CompletedRide[]
 
@@ -21,6 +24,7 @@ public class Driver extends Person{
         super(MoblieNumber, Email, Password, UserName);
         this.NationalID = NationalID;
         this.DriverLicense = DriverLicense;
+        state=false;
     }
     public Driver(String MoblieNumber, String Password, String UserName,String NationalID,String DriverLicense) {
          //Calling the super class Consturctor
@@ -36,6 +40,11 @@ public class Driver extends Person{
     public void setNationalID(String NationalID) {
         this.NationalID = NationalID;
     }
+
+    public void setState(boolean state) {
+        this.state = state;
+    }
+    
     
 
     
@@ -52,7 +61,19 @@ public class Driver extends Person{
 
     @Override
     public boolean Signup(Register register) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        if(register.Regist(this))
+        {
+            Scanner input =new Scanner(System.in);
+            String license=input.nextLine();
+            String NAID=input.nextLine();
+            setDriverLicense(license);
+            setNationalID(NAID);
+            return true;
+        }
+        return false;
     }
+    
+    
     
 }
