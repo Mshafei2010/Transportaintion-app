@@ -14,6 +14,7 @@ import java.nio.file.StandardOpenOption;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Stream;
 
 /**
  *
@@ -41,8 +42,8 @@ public class FavouriteAreas {
                 }
     }
     public void addnewArea(Area area){
-        //Files.write(Paths.get("D:\\uni\\5th term\\Software Design\\SW\\Files to launch"), .getBytes(StandardCharsets.UTF_8),StandardOpenOption.APPEND);
         try{
+        Files.write(Paths.get("FavouriteAreas.txt"), (area.getAName()+"\n").getBytes(StandardCharsets.UTF_8),StandardOpenOption.APPEND);
         List <String> fileStream = Files.readAllLines(Paths.get("Files to launch\\FavouriteAreas.txt"));
         int numofLn = fileStream.size();
         Scanner in = new Scanner(new File("Files to launch\\FavouriteAreas.txt"));
@@ -51,16 +52,21 @@ public class FavouriteAreas {
         while(in.hasNextLine())
             {
                 arr[i++].setAName(in.nextLine());
-                System.out.println(arr[i]);
+                System.out.println(arr[i-1]);
             }
         }
         catch(Exception IO)
                 {
-                    System.out.println("Favoirte area do not work now");
+                    System.out.println("Adding Favoirte area do not work now");
                 }
     }
     public void deleteArea(Area area){
-        
+		String lineToRemove = area.getAName();	 
+		try (Stream<String> stream = Files.lines(Paths.get("Files to launch\\FavouriteAreas.txt"))) { 
+			stream.filter(line->!line.trim().equals(lineToRemove)).forEach(System.out::println); 
+		} catch (Exception IO) {
+                    System.out.println("Deleting Favoirte area do not work now");
+		} 
     }
     public Area[] getFavouriteAreas(){
         return arr;
