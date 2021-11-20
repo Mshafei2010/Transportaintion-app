@@ -47,5 +47,10 @@ public class Admin extends Person {
          
      }
 
+    @Override
+    public boolean Signup(Register register) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
 }
