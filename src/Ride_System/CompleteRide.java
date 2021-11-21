@@ -11,14 +11,19 @@ import User_System.*;
  *
  * @author mshaf
  */
-public class CompleteRide {
+public class CompleteRide extends Ride{
     int rate;
     Offer Cost;
     Driver driver;
-    //rRidespec spec;
+    Ridespec spec;
     CompleteRide(Client client , Area src , Area Dest ,Driver driver)
     {
-        
+        super(client, src, Dest);
+        this.driver=driver;
+    }
+    public Ride Notify() {
+        System.out.println("Ride is Completed");
+        return this; 
     }
     public void setRate(int rate) {
         this.rate = rate;
@@ -43,10 +48,17 @@ public class CompleteRide {
         return Cost;
     }
     
-    //setspec(spec:Ridespec):void
-    //getspec():Ridespec
-    void setroute( Area src ,Area dest)
-    {
-        
+    public void etspec(Ridespec spec){
+        this.spec=spec;
     }
+    public Ridespec getspec()
+    {
+        return spec;
+    }
+    public void setroute( Area src ,Area dest)
+    {
+        this.src=src;
+        this.dest=dest;
+    }
+
 }

@@ -16,20 +16,21 @@ public class ReqRide extends Ride{
     Offer[] offers;
     Driver[] drivers;
     int numofoffers;
-    ReqRide(Client client ,Area src ,Area Dest){
-        
+    static int indexOfOffer=0;
+    public ReqRide(Client client, Area src, Area dest) {
+        super(client, src, dest);
     }
+    
     
     public void addnewOffer(Offer offer,Driver driver)
     {
-        
+        offers[indexOfOffer]=offer;
+        drivers[indexOfOffer]=driver;
+        indexOfOffer++;
     }
     Offer [] getOfferDetails(){
         return offers;
     }
-
-
-
 
     public Ride Notify()
     {

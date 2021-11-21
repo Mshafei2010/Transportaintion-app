@@ -18,6 +18,11 @@ public abstract class Ride {
     Area src;
     Area dest;
     
+    Ride(Client client , Area src ,Area dest){
+        this.client=client;
+        this.dest=dest;
+        this.src=src;
+    }
     public abstract Ride Notify();
     
     public void setClient(Client client) {
