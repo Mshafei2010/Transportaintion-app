@@ -12,12 +12,29 @@ import Ride_System.Offer;
  *
  * @author mshaf
  */
-public class RequestedRide extends Ride{
+public class ReqRide extends Ride{
     Offer[] offers;
     Driver[] drivers;
     int numofoffers;
-    public RequestedRide(Client client, Area src, Area Dest) {
-        super(client, src, Dest);
+    ReqRide(Client client ,Area src ,Area Dest){
+        
+    }
+    
+    public void addnewOffer(Offer offer,Driver driver)
+    {
+        
+    }
+    Offer [] getOfferDetails(){
+        return offers;
+    }
+
+
+
+
+    public Ride Notify()
+    {
+        System.out.println("Ride is requested");
+        return this;
     }
 
     public void setOffers(Offer[] offers) {
