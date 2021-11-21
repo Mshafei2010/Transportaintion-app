@@ -14,13 +14,13 @@ public abstract class Person {
     private Register register;
     
     //Constructors
-    public Person(String MoblieNumber, String Email, String Password, String UserName) {
+    public Person(String UserName,String Password,String MoblieNumber, String Email ) {
         this.MoblieNumber = MoblieNumber;
         this.Email = Email;
         this.Password = Password;
         this.UserName = UserName;
     }
-     public Person(String MoblieNumber, String Password, String UserName) {
+     public Person(String UserName,String Password,String MoblieNumber) {
         this.MoblieNumber = MoblieNumber;
         this.Password = Password;
         this.UserName = UserName;
@@ -72,7 +72,7 @@ public abstract class Person {
     public abstract boolean Signup(Register register );
     
     //login
-    public abstract void login( String Password, String UserName);
+    public abstract boolean login( String UserName, String Password);
     public abstract void logout();
     
     

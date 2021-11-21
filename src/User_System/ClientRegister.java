@@ -29,7 +29,7 @@ public class ClientRegister extends Register {
              outusername.append(person.getUserName()+"\n");
              outusername.close();
              //Creating a Data File That Contains all the data of the client
-            File clientfile=new File("Files to launch\\Clients"+person.getUserName()+".txt");
+            File clientfile=new File("Files to launch\\Clients\\"+person.getUserName()+".txt");
             clientfile.createNewFile();
             FileWriter fstream;
             fstream = new FileWriter(clientfile, true);

@@ -11,7 +11,18 @@ public class SW {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Person p1=new Admin("012", "asd", "dad");
+
+        Register register=new AdminRegister();
+        Person p2= new Admin("nnn","dasdas123","mmmmm");
+        if(p2.login( "nnn","dasdas123"))
+        {
+            System.out.println("sw.SW.main()");
+        }
+        else
+            System.out.println("no");
+        
+        
+       
     }
     
 }

@@ -5,6 +5,8 @@
  */
 package User_System;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.util.Scanner;
 
 /**
@@ -15,7 +17,7 @@ public class Driver extends Person{
     
     private String NationalID;
     private String DriverLicense ;
-    private boolean state;
+
 //favoriteareas:FavouriteArea[]
 //-ridesHistory:CompletedRide[]
 
@@ -24,11 +26,11 @@ public class Driver extends Person{
         super(MoblieNumber, Email, Password, UserName);
         this.NationalID = NationalID;
         this.DriverLicense = DriverLicense;
-        state=false;
+    
     }
-    public Driver(String MoblieNumber, String Password, String UserName,String NationalID,String DriverLicense) {
+    public Driver(String UserName,String Password,String MoblieNumber,String NationalID,String DriverLicense) {
          //Calling the super class Consturctor
-        super(MoblieNumber, Password, UserName);
+        super( UserName,Password,MoblieNumber);
           this.NationalID = NationalID;
         this.DriverLicense = DriverLicense;
     }
@@ -41,16 +43,13 @@ public class Driver extends Person{
         this.NationalID = NationalID;
     }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
-    
     
 
     
     @Override
-    public void login( String Password, String UserName) {
-        
+    public boolean login( String UserName, String Password){
+        return false;
+           
     }
 
 

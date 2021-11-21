@@ -5,7 +5,13 @@
  */
 package User_System;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -13,20 +19,22 @@ import java.io.File;
  */
 public class Client extends Person {
 
-    public Client(String MoblieNumber, String Password, String UserName) {
-        super(MoblieNumber, Password, UserName);
+    public Client(String UserName,String Password,String MoblieNumber) {
+        super(UserName, Password,MoblieNumber);
     }
-       public Client(String MoblieNumber, String Email, String Password, String UserName) {
+       public Client(String UserName,String Password,String MoblieNumber,String Email) {
         //Calling the super class Consturctor
-        super(MoblieNumber, Email, Password, UserName);
+        super( UserName,Password, MoblieNumber,Email);
     }
 
     
 
     @Override
-    public void login( String Password, String UserName) {
-
+    public boolean login( String UserName, String Password) {
+        return false;
+           
     }
+    
 
 
     @Override

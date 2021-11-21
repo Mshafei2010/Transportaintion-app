@@ -13,19 +13,20 @@ public class Admin extends Person {
     DriverRegister [] pendinglist;
     int countpending;
     //Constructors
-    public Admin(String MoblieNumber, String Email, String Password, String UserName) {
+    public Admin(String UserName,String Password,String MoblieNumber,String Email) {
         //Calling the super class Consturctor
-        super(MoblieNumber, Email, Password, UserName);
+        super(UserName, Password,   MoblieNumber, Email);
         pendinglist=new DriverRegister[100];
         countpending=0;
     }
-    public Admin(String MoblieNumber, String Password, String UserName) {
+    public Admin(String UserName,String Password,String MoblieNumber) {
          //Calling the super class Consturctor
-        super(MoblieNumber, Password, UserName);
+        super( UserName, Password,MoblieNumber);
     }
 
     @Override
-    public void login( String Password, String UserName) {
+    public boolean login( String UserName, String Password) {
+        return false;
        
     }
 
@@ -38,8 +39,7 @@ public class Admin extends Person {
     //
     public DriverRegister[] listPendingReg()
     {
-        return pendinglist;
-        
+        return pendinglist;   
     }
      public void updatePendingReg(DriverRegister dregiste)
      {
@@ -52,8 +52,7 @@ public class Admin extends Person {
 
     @Override
     public boolean Signup(Register register) {
-        return false;
-       
+      return register.Regist(this);
     }
       public void addpending(DriverRegister pdriver)
     {
