@@ -5,6 +5,14 @@
  */
 package User_System;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Dell
@@ -26,8 +34,27 @@ public class Admin extends Person {
 
     @Override
     public boolean login( String UserName, String Password) {
-        return false;
-       
+  File file=new File("Files to launch\\Admins\\"+UserName+".txt");
+           if(file.exists())
+           {
+               FileReader fr = null;
+               try {
+                   fr = new FileReader (file.getPath());
+                   BufferedReader inf = new BufferedReader(fr);
+                   String line;
+                while((line=inf.readLine())!=null){
+                    if (Password.contains(line))
+                        return true;
+                }
+                fr.close();
+                } catch (FileNotFoundException ex) {
+                   Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+               }  catch (IOException ex) {
+                       Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+
+        return false;       
     }
 
  

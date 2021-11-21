@@ -31,8 +31,28 @@ public class Client extends Person {
 
     @Override
     public boolean login( String UserName, String Password) {
+        
+           File file=new File("Files to launch\\Clients\\"+UserName+".txt");
+           if(file.exists())
+           {
+               FileReader fr = null;
+               try {
+                   fr = new FileReader (file.getPath());
+                   BufferedReader inf = new BufferedReader(fr);
+                   String line;
+                while((line=inf.readLine())!=null){
+                    if (Password.contains(line))
+                        return true;
+                }
+                fr.close();
+                } catch (FileNotFoundException ex) {
+                   Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+               }  catch (IOException ex) {
+                       Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+               }
+           }
+
         return false;
-           
     }
     
 

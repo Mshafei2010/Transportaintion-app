@@ -3,38 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/sw/SW.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Driver.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/Ride_System/Offer.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/DriverRegister.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/Ride_System/CompleteRide.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/Ride_System/Ride.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Admin.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/sw/Ca.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/Ride_System/RequestedRide.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Person.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Register.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Client.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/ClientRegister.java</file>
-            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/Ride_System/FavouriteAreas.java</file>
-=======
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/User_System/Driver.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/Area.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/FavouriteAreas.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/ReqRide.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/Ride.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/User_System/Admin.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/CompleteRide.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/User_System/Client.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/Offer.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/User_System/Person.java</file>
-<<<<<<< HEAD
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/User_System/Register.java</file>
-            <file>file:/D:/uni/5th%20term/Software%20Design/SW/src/Ride_System/Ridespec.java</file>
-=======
->>>>>>> 8ce8cf0156f5126e55b0ba83cbd83418d6db00d7
->>>>>>> d518b0965df400596e85bba063c1149d1ed056b6
+            <file>file:/C:/Users/A/Desktop/New%20folder/Transportaintion-app/src/User_System/Admin.java</file>
+            <file>file:/C:/Users/A/Desktop/New%20folder/Transportaintion-app/src/User_System/ClientRegister.java</file>
+            <file>file:/C:/Users/A/Desktop/New%20folder/Transportaintion-app/src/User_System/Person.java</file>
+            <file>file:/C:/Users/A/Desktop/New%20folder/Transportaintion-app/src/User_System/Driver.java</file>
+            <file>file:/C:/Users/A/Desktop/New%20folder/Transportaintion-app/src/User_System/Register.java</file>
+            <file>file:/C:/Users/A/Desktop/New%20folder/Transportaintion-app/src/User_System/Client.java</file>
         </group>
     </open-files>
 </project-private>
