@@ -11,16 +11,14 @@ public class SW {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        Register register=new AdminRegister();
-        Person p2= new Admin("nnn","dasdas123","mmmmm");
-        if(p2.login( "nnn","dasdas123"))
-        {
-            System.out.println("sw.SW.main()");
-        }
-        else
-            System.out.println("no");
-        
+        Admin admin=new Admin("shaf3i", "123", "fdadadad");
+        Register regadmin=new AdminRegister();
+        admin.Signup(regadmin);
+        DriverRegister register=new DriverRegister();
+        Person p2= new Driver("Reda", "123", "102313131313", "fafsfs", "1312131");
+        register.setAdmin(admin);
+        admin.verifyDriverregister(register);
+        p2.Signup(register);
         
        
     }

@@ -5,11 +5,13 @@
  */
 package User_System;
 
+import Ride_System.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -17,7 +19,9 @@ import java.util.logging.Logger;
  *
  * @author Dell
  */
-public class Client extends Person {
+public class Client extends Person implements User{
+    ReqRide requested;
+    Offer [] ridesoffer;
 
     public Client(String UserName,String Password,String MoblieNumber) {
         super(UserName, Password,MoblieNumber);
@@ -59,7 +63,7 @@ public class Client extends Person {
 
     @Override
     public void logout() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       System.exit(0);
     }
 
     @Override
@@ -69,5 +73,49 @@ public class Client extends Person {
         else
             return false;
     }
+
+    @Override
+    public void update() {
+        listoffers(requested);
+        
+    }
+
+    public ReqRide requestRide(String src, String dest) {
+       return new ReqRide(this, src, dest);
+    }
+
+
+
+    @Override
+    public void listoffers(ReqRide ride) {
+        Offer[] offers=ride.getOffers();
+        for (int i=0;i<offers.length;i++)
+        {
+            System.err.println("Driver Name"+offers[i].getDriver().getUserName()+"////"+"Price :"+offers[i].getprice());
+        }
+    }
+
+
+    @Override
+    public void selectOffer(Offer offer) {
+         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void AddFavArea(String area) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void addOffer(ReqRide ride, int price ) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Ride[] listreqrides(ReqRide[] requests) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
     
 }

@@ -16,14 +16,14 @@ public class CompleteRide extends Ride{
     Offer Cost;
     Driver driver;
     Ridespec spec;
-    CompleteRide(Client client , Area src , Area Dest ,Driver driver)
+    CompleteRide(Client client , String src , String Dest ,Driver driver)
     {
         super(client, src, Dest);
         this.driver=driver;
     }
-    public Ride Notify() {
+    public void Notify() {
         System.out.println("Ride is Completed");
-        return this; 
+       
     }
     public void setRate(int rate) {
         this.rate = rate;
@@ -55,7 +55,7 @@ public class CompleteRide extends Ride{
     {
         return spec;
     }
-    public void setroute( Area src ,Area dest)
+    public void setroute( String src ,String dest)
     {
         this.src=src;
         this.dest=dest;

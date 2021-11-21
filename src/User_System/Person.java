@@ -7,11 +7,11 @@ package User_System;
 
 
 public abstract class Person {
-    private String MoblieNumber;
-    private String Email;
-    private String Password;
-    private String UserName;
-    private Register register;
+    protected String MoblieNumber;
+    protected String Email;
+    protected String Password;
+    protected String UserName;
+    protected Register register;
     
     //Constructors
     public Person(String UserName,String Password,String MoblieNumber, String Email ) {

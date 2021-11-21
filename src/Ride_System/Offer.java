@@ -17,7 +17,7 @@ public class Offer {
     
     Offer(int price, Driver driver)
     {
-        //price
+        this.price=price;
         this.driver = driver;
     }
     public void setprice(int price)
@@ -28,4 +28,14 @@ public class Offer {
     {
         return price;
     }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+    
+            
 }

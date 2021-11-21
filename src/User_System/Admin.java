@@ -18,13 +18,13 @@ import java.util.logging.Logger;
  * @author Dell
  */
 public class Admin extends Person {
-    DriverRegister [] pendinglist;
-    int countpending;
+    Person [] pendinglist;
+    int countpending=0;
     //Constructors
     public Admin(String UserName,String Password,String MoblieNumber,String Email) {
         //Calling the super class Consturctor
         super(UserName, Password,   MoblieNumber, Email);
-        pendinglist=new DriverRegister[100];
+        pendinglist=new Person[100];
         countpending=0;
     }
     public Admin(String UserName,String Password,String MoblieNumber) {
@@ -64,13 +64,13 @@ public class Admin extends Person {
     }
     
     //
-    public DriverRegister[] listPendingReg()
+    public Person[] listPendingReg()
     {
         return pendinglist;   
     }
-     public void updatePendingReg(DriverRegister dregiste)
+     public void updatePendingReg(Person pdriver)
      {
-         addpending(dregiste);
+         addpending(pdriver);
      }
      public void verifyDriverregister(DriverRegister dregist)
      {
@@ -81,9 +81,8 @@ public class Admin extends Person {
     public boolean Signup(Register register) {
       return register.Regist(this);
     }
-      public void addpending(DriverRegister pdriver)
+      public void addpending(Person pdriver)
     {
-        
         pendinglist[countpending]=pdriver;
         countpending++;
     }

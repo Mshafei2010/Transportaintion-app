@@ -12,18 +12,18 @@ import User_System.Client;
  * @author mshaf
  */
 public abstract class Ride {
-    String title;
-    String description;
-    Client client;
-    Area src;
-    Area dest;
+    protected String title;
+    protected String description;
+    protected Client client;
+    protected String src;
+    protected String dest;
     
-    Ride(Client client , Area src ,Area dest){
+    Ride(Client client , String src ,String dest){
         this.client=client;
         this.dest=dest;
         this.src=src;
     }
-    public abstract Ride Notify();
+    public abstract void Notify();
     
     public void setClient(Client client) {
         this.client = client;
@@ -33,11 +33,11 @@ public abstract class Ride {
         this.description = description;
     }
 
-    public void setDest(Area dest) {
+    public void setDest(String dest) {
         this.dest = dest;
     }
 
-    public void setSrc(Area src) {
+    public void setSrc(String src) {
         this.src = src;
     }
 
@@ -49,7 +49,7 @@ public abstract class Ride {
         return client;
     }
 
-    public Area getSrc() {
+    public String getSrc() {
         return src;
     }
 
@@ -57,7 +57,7 @@ public abstract class Ride {
         return description;
     }
 
-    public Area getDest() {
+    public String getDest() {
         return dest;
     }
 

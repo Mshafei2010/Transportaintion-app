@@ -18,15 +18,14 @@ public class DriverRegister extends Register{
     Admin admin;
     boolean state=false;
     
-    public void NotifyAdmin()
+    public void NotifyAdmin(Person person)
     {
-       admin.updatePendingReg(this);
+       admin.updatePendingReg(person);
     }
 
 
     @Override
     public boolean Regist(Person person) {
-            NotifyAdmin();
         if (state)
         {
             try {
@@ -37,7 +36,7 @@ public class DriverRegister extends Register{
              outusername.append(person.getUserName()+"\n");
              outusername.close();
              //Creating a Data File That Contains all the data of the client
-            File clientfile=new File("Files to launch\\Clients\\"+person.getUserName()+".txt");
+            File clientfile=new File("Files to launch\\Drivers\\"+person.getUserName()+".txt");
             clientfile.createNewFile();
             FileWriter fstream;
             fstream = new FileWriter(clientfile, true);

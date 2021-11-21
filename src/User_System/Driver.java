@@ -5,10 +5,15 @@
  */
 package User_System;
 
+import Ride_System.Offer;
+import Ride_System.ReqRide;
+import Ride_System.Ride;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -18,12 +23,13 @@ import java.util.logging.Logger;
  *
  * @author Dell
  */
-public class Driver extends Person{
+public class Driver extends Person implements User{
     
     private String NationalID;
     private String DriverLicense ;
-
-//favoriteareas:FavouriteArea[]
+   private boolean state=false;
+   private int faindex=0;
+    String[] favoriteareas;
 //-ridesHistory:CompletedRide[]
 
      public Driver(String MoblieNumber, String Email, String Password, String UserName,String NationalID,String DriverLicense) {
@@ -87,16 +93,79 @@ public class Driver extends Person{
         
         if(register.Regist(this))
         {
-            Scanner input =new Scanner(System.in);
-            String license=input.nextLine();
-            String NAID=input.nextLine();
-            setDriverLicense(license);
-            setNationalID(NAID);
-            return true;
+            try {
+                File clientfile=new File("Files to launch\\Drivers\\"+UserName+".txt");
+                clientfile.createNewFile();
+                FileWriter fstream;
+                fstream = new FileWriter(clientfile, true);
+                BufferedWriter out = new BufferedWriter(fstream);
+                out.append(NationalID + "\n");
+                out.append(DriverLicense+ "\n");
+                out.close();
+                setState(true);
+                return true;
+            } catch (IOException ex) {
+                Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         return false;
     }
     
+    public void setState(boolean state) {
+        this.state = state;
+    }
     
+   public boolean isverified()
+   {
+       return state;
+   }
+
+    @Override
+    public void update() {
+        System.out.print("New Request added please list requests");
+    }
+
+
     
+    public void listoffers(ReqRide ride) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    public void selectOffer(Offer offer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    
+    public void AddFavArea(String area) {
+        favoriteareas[faindex]=area;
+        faindex++;
+    }
+
+    
+    public void addOffer(ReqRide ride, int price) {
+       ride.addnewOffer(price, this);
+    }
+
+  
+    public Ride[] listreqrides(ReqRide[] requests) {
+        
+        Ride[] favrequests=new Ride[requests.length];
+        int counter=0;
+        for (int i=0;i<requests.length;i++)
+        {
+            for(int c=0;c<faindex;c++)
+            {
+            if(requests[i].getSrc().contains(favoriteareas[c]))
+            {
+                favrequests[counter]=requests[i];
+            }
+        }
+        }
+        return favrequests;
+        
+    }
+
+
 }

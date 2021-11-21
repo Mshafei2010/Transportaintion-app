@@ -5,62 +5,56 @@
  */
 package Ride_System;
 
-import User_System.Client;
-import User_System.Driver;
-import Ride_System.Offer;
+import User_System.*;
 /**
  *
  * @author mshaf
  */
 public class ReqRide extends Ride{
     Offer[] offers;
-    Driver[] drivers;
-    int numofoffers;
-    static int indexOfOffer=0;
-    public ReqRide(Client client, Area src, Area dest) {
+    int indexOfOffer=0;
+    String AName;
+    
+    public void setAName(String name)
+    {
+        AName =name;
+    }
+    public String getAName()
+    {
+        return AName;
+    }
+    public ReqRide(Client client, String src, String dest) {
         super(client, src, dest);
     }
     
     
-    public void addnewOffer(Offer offer,Driver driver)
+    public void addnewOffer(int price ,Driver driver)
     {
-        offers[indexOfOffer]=offer;
-        drivers[indexOfOffer]=driver;
+        offers[indexOfOffer]=new Offer(price ,driver);
         indexOfOffer++;
-    }
-    Offer [] getOfferDetails(){
-        return offers;
+        Notify();
     }
 
-    public Ride Notify()
+    public void Notify()
     {
-        System.out.println("Ride is requested");
-        return this;
+        client.update();
     }
 
-    public void setOffers(Offer[] offers) {
-        this.offers = offers;
+    public  CompleteRide pickOffer(Offer offers) {
+        
+       System.out.println("Not supported yet");
+        return null;
     }
 
-    public void setDrivers(Driver[] drivers) {
-        this.drivers = drivers;
-    }
-
-    public void setNumofoffers(int numofoffers) {
-        this.numofoffers = numofoffers;
-    }
-
-    public Driver[] getDrivers() {
-        return drivers;
-    }
-
-    public int getNumofoffers() {
-        return numofoffers;
-    }
 
     public Offer[] getOffers() {
         return offers;
     }
+    public ReqRide getride()
+    {
+        return this;
+    }
+   
     
     
 }
