@@ -72,7 +72,7 @@ public abstract class Person {
     public abstract boolean Signup(Register register );
     
     //login
-    public abstract void login(String MoblieNumber, String Email, String Password, String UserName);
+    public abstract void login( String Password, String UserName);
     public abstract void logout();
     
     

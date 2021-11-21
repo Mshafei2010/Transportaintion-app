@@ -5,6 +5,8 @@
  */
 package User_System;
 
+import java.io.File;
+
 /**
  *
  * @author Dell
@@ -22,8 +24,8 @@ public class Client extends Person {
     
 
     @Override
-    public void login(String MoblieNumber, String Email, String Password, String UserName) {
-        
+    public void login( String Password, String UserName) {
+
     }
 
 
