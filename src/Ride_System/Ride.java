@@ -11,22 +11,14 @@ import User_System.Client;
  *
  * @author mshaf
  */
-public class Ride {
+public abstract class Ride {
     String title;
     String description;
     Client client;
     Area src;
     Area dest;
     
-    Ride(Client client ,Area src ,Area Dest){
-        this.client=client;
-        this.src = src;
-        this.dest =Dest;
-    }
-    public Ride Notify(){
-    //    Ride notifiedRide();
-        return this;
-    }
+    public abstract Ride Notify();
     
     public void setClient(Client client) {
         this.client = client;
