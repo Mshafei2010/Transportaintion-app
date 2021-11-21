@@ -25,7 +25,7 @@ public class Admin extends Person {
     }
 
     @Override
-    public void login(String MoblieNumber, String Email, String Password, String UserName) {
+    public void login( String Password, String UserName) {
        
     }
 
