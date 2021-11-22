@@ -22,7 +22,6 @@ import java.util.logging.Logger;
  */
 public class Admin extends Person {
     List <Driver>pendinglist;
-    int countpending=0;
     //Constructors
     public Admin(String UserName,String Password,String MoblieNumber,String Email) {
         //Calling the super class Consturctor
@@ -33,7 +32,6 @@ public class Admin extends Person {
          //Calling the super class Consturctor
         super( UserName, Password,MoblieNumber);
         pendinglist=new ArrayList<Driver>();
-        countpending=0;
     }
 
     @Override
@@ -72,7 +70,7 @@ public class Admin extends Person {
     {
         for(int i=0;i<pendinglist.size();i++)
         {
-             System.err.println((i+1)+"- Name :"+pendinglist.get(i).getUserName()+"// National ID:"+pendinglist.get(i).getNationalID()+"// Driver License:"+pendinglist.get(i).getDriverLicense());
+             System.out.println((i+1)+"- Name :"+pendinglist.get(i).getUserName()+"// National ID:"+pendinglist.get(i).getNationalID()+"// Driver License:"+pendinglist.get(i).getDriverLicense());
         }
     }
      public void updatePendingReg(Driver pdriver)
@@ -82,9 +80,9 @@ public class Admin extends Person {
      }
      public void verifyDriverregister(Driver driver)
      {
-         pendinglist.remove(driver);
          driver.setState(true);
          driver.Signup(driver.getRegister());
+         pendinglist.remove(driver);
          
      }
 

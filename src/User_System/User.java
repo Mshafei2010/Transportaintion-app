@@ -6,6 +6,7 @@
 package User_System;
 
 import Ride_System.*;
+import java.util.List;
 
 /**
  *
@@ -18,7 +19,7 @@ public interface User {
     public void selectOffer(Offer offer) ;
     public void AddFavArea(String area);
     public void addOffer(ReqRide ride, int price) ;
-    public void listreqrides(ReqRide[] requests);
+    public List<ReqRide>listreqrides(List<ReqRide> requests);
     
     
 }

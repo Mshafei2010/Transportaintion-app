@@ -15,6 +15,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,6 +47,11 @@ public class Driver extends Person implements User{
           this.NationalID = NationalID;
         this.DriverLicense = DriverLicense;
     }
+     public Driver(String UserName,String Password,String MoblieNumber) {
+         //Calling the super class Consturctor
+        super( UserName,Password,MoblieNumber);
+    }
+
 
     public void setDriverLicense(String DriverLicense) {
         this.DriverLicense = DriverLicense;
@@ -136,7 +143,8 @@ public class Driver extends Person implements User{
 
     @Override
     public void update() {
-        System.out.print("New Request added please list requests");
+        System.err.print("Client Notifcation");
+        System.err.print("New Request added please list requests");
     }
 
 
@@ -162,18 +170,21 @@ public class Driver extends Person implements User{
     }
 
   
-    public void listreqrides(ReqRide[] requests) {
+    public List<ReqRide> listreqrides(List<ReqRide> requests) {
+        List<ReqRide> toreturn=new ArrayList<ReqRide>();
         int counter=0;
-        for (int i=0;i<requests.length;i++)
+        for (int i=0;i<requests.size();i++)
         {
             for(int c=0;c<faindex;c++)
             {
-            if(requests[i].getSrc().contains(favoriteareas[c]))
+            if(requests.get(i).getSrc().contains(favoriteareas[c]))
             {
-                System.out.println("ride 1-> src :" +requests[i].getSrc()+"  destination: "+requests[i].getDest()+"  Client Name:" +requests[i].getClient().getUserName());
+                toreturn.add(requests.get(i));
+                System.out.println("ride 1-> src :" +requests.get(i).getSrc()+"  destination: "+requests.get(i).getDest()+"  Client Name:" +requests.get(i).getClient().getUserName());
             }
         }
         }
+        return toreturn;
         
     }
 

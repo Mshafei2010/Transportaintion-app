@@ -44,6 +44,7 @@ public class ReqRide extends Ride{
     public void Notifyofarea()
     {
         System.out.println("Driver ->New Request added please list all requests to get your favourite");
+        
     }
 
     public  CompleteRide pickOffer(Offer offers) {

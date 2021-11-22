@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -117,7 +118,8 @@ public class Client extends Person implements User{
     }
 
     @Override
-    public void listreqrides(ReqRide[] requests){}
+    public List<ReqRide> listreqrides(List<ReqRide>requests){return null;
+}
     
     
 }

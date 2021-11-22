@@ -6,6 +6,8 @@
 package sw;
 import User_System.*;
 import Ride_System.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 public class SW {
 
@@ -15,28 +17,177 @@ public class SW {
     public static void main(String[] args) {
         Scanner cin = new Scanner(System.in);
         //admin register
-        Admin admin=new Admin("shaf3i", "123", "fdadadad");
+        Admin admin=new Admin("shaf3i", "123", "0123");
         Register regadmin=new AdminRegister();
         admin.Signup(regadmin);
+        List <Driver>driversystem=new ArrayList<Driver> ();
+        List <Driver>driver=new ArrayList<Driver> ();
+        List <Client>client=new ArrayList<Client> ();
         //making this admin aproving the drivers
         DriverRegister driverregist=new DriverRegister();
+        ClientRegister clientRegister=new ClientRegister();
         driverregist.setAdmin(admin);
-        
-        //driver register 1
-        System.out.println("Register as A driver d1 please :");
-        String name,password,phoneNumber,NAID,license;
+        String name,password,phoneNumber,NAID,license,choice;
+        List <ReqRide>r=new ArrayList<ReqRide>();
+        Driver d1;
+        Client c1 = null;
+        Driver d2=null;
+        while (true){
+            System.out.println("choose ");
+             System.out.println("1- Register as A driver :");
+             System.out.println("2- Register as A client :");
+             System.out.println("3- show pending driver registeration :");
+             System.out.println("4- sign in as driver :");
+             System.out.println("5- sign in as client:");
+             
+             choice=cin.next();
+            if(choice.equals("1")){
+        //driver register 
        
-        System.out.println("Enter your name: ");
-        name=cin.next();
-        System.out.println("Enter your password: ");
-        password=cin.next();
-        System.out.println("Enter your phone number: ");
-        phoneNumber=cin.next();
-        System.out.println("Enter your  National ID: ");
-        NAID=cin.next();
-        System.out.println("Enter your License: ");
-        license=cin.next();
+                 System.out.println("Enter your name: ");
+                 name=cin.next();
+                 System.out.println("Enter your password: ");
+                 password=cin.next();
+                 System.out.println("Enter your phone number: ");
+                phoneNumber=cin.next();
+                System.out.println("Enter your  National ID: ");
+                NAID=cin.next();
+                System.out.println("Enter your License: ");
+                license=cin.next();
+                d1= new Driver(name,password,phoneNumber,NAID,license);
+                d1.Signup(driverregist);
+                driver.add(d1);
+                driversystem.add(d1);
+            }
+            else if(choice.equals("2"))
+            {
+                System.out.print("Register as A client please");
+                System.out.println("Enter your name: ");
+                name=cin.next();
+                System.out.println("Enter your password: ");
+                password=cin.next();
+                System.out.println("Enter your phone number: ");
+                phoneNumber=cin.next();
+                Client c=new Client(name, password, phoneNumber);
+                client.add(c);
+                if(c.Signup(clientRegister)){
+                     System.out.println("client1-->regsiter completed");
+              
+                }
+            }
+            else if(choice.equalsIgnoreCase("3"))
+            {
+                admin.listPendingReg();
+              System.out.print("Admin->type the number of the driver you want to verify:");
+             int choice2;
+                choice2 = cin.nextInt();
+                if(choice2<=driver.size()){
+                           admin.verifyDriverregister(driver.get(choice2-1));
+                           driver.remove(driver.get(choice2-1));
+                }
+            
+            }
+            else if(choice.equalsIgnoreCase("4"))
+            {
+                System.out.println("Enter your name: ");
+                name=cin.next();
+                System.out.println("Enter your password: ");
+                password=cin.next();
+                System.out.println("Enter your phone number: ");
+                phoneNumber=cin.next();
+                for(int i=0;i<driversystem.size();i++)
+                {
+                    if(name.equals(driversystem.get(i).getUserName())&&password.equals(driversystem.get(i).getPassword()))
+                    {
+                        d2=driversystem.get(i);
+                    }}
+                
+                if(d2.login(name, password)&&null!=d2)
+                {
+                    System.out.println("Sign in completed"); 
+                    System.out.println("click (1) to - Add A new Favourite Area");
+                    System.out.println("click (2) to - list all req");
+                     String choice2=cin.next();
+                     if(choice2.equalsIgnoreCase("1"))
+                     {
+                             System.out.println("Enter your fav area: ");
+                             String src=cin.next();
+                             d2.AddFavArea(src);
+                     }
+                     else if(choice2.equalsIgnoreCase("2"))
+                     {
+                        List<ReqRide>driverfav= d2.listreqrides(r);
+                        System.out.println("Enter ride number to add offer");
+                        int num=cin.nextInt();
+                         System.out.println("Enter your offer please");
+                         int offer=cin.nextInt();
+                        driverfav.get(num-1).addnewOffer(offer, d2);
+                     }
+                    
+                    
+                }
+                else
+                {
+                    System.out.println("sign in rejected");
+                }
+                
+            }
+             else if(choice.equalsIgnoreCase("5"))
+            {
+                System.out.println("Enter your name: ");
+                name=cin.next();
+                System.out.println("Enter your password: ");
+                password=cin.next();
+                System.out.println("Enter your phone number: ");
+                phoneNumber=cin.next();
+                
+                for(int i=0;i<client.size();i++)
+                {
+                    if(name.equals(client.get(i).getUserName())&&password.equals(client.get(i).getPassword()))
+                        c1=client.get(i);
+                }
+                if(c1.login(name, password)||c1!=null)
+                {
+                    System.out.println("Sign in completed");
+                     System.out.println("click (1) to - Request a Ride as Client");
+                    String choice2=cin.next();
+                    if(choice2.equalsIgnoreCase("1"))
+                    {
+                         c1=client.get(0);
+                         System.out.println("Enter your src: ");
+                         String src=cin.next();
+                         System.out.println("Enter your dest: ");
+                         String dest=cin.next();
+                         r.add(c1.requestRide(src, dest));
+                    }
+                    
+                }
+                else
+                {
+                    System.out.println("sign in rejected");
+                }
+                
+            }
+            
+            
+            
+            }
+            
         
+       /*
+            d1=driversystem.get(0);
+                 System.out.println("Enter your fav area: ");
+                 String src=cin.next();
+                 d1.AddFavArea(src);
+        System.out.print("client1-->if you want to request a ride enter y:");
+                choice=cin.next();
+                if(choice.equalsIgnoreCase("y"))
+                {
+                    System.out.print("Enter a src :");
+                    String src=cin.next();
+                    System.out.print("Enter a destination :");
+                     String dest=cin.next();
+                    r[0]=client.requestRide(src, dest);
         //Driver register 2
         Driver d1= new Driver(name,password,phoneNumber,NAID,license);
         d1.Signup(driverregist);
@@ -51,11 +202,11 @@ public class SW {
         NAID=cin.next();
         System.out.println("Enter your License: ");
         license=cin.next();
-        
+        }
         Driver d2= new Driver(name,password,phoneNumber,NAID,license);
         d2.Signup(driverregist);
         System.out.print("Admin->type y if you want to list pending registeration:");
-        String choice=cin.next();
+         choice=cin.next();
         if(choice.equalsIgnoreCase("y"))
         {
             admin.listPendingReg();
@@ -119,7 +270,7 @@ public class SW {
         phoneNumber=cin.next();
         Client client2=new Client(name, password, phoneNumber);
         client.Signup(clientRegister);
-         System.out.print("client2-->if you want to request a ride enter y:");
+         System.out.print("client2-->if you want to request a ride enter y :");
          choice=cin.next();
          if(choice.equalsIgnoreCase("y"))
          {
@@ -133,7 +284,8 @@ public class SW {
            choice=cin.next();
          if (choice.equalsIgnoreCase("y")){
          d1.listreqrides(r);
-         }
+         
+        }*/
          
          
          
