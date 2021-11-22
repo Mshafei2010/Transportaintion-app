@@ -93,7 +93,7 @@ public class Client extends Person implements User{
         Offer[] offers=ride.getOffers();
         for (int i=0;i<offers.length;i++)
         {
-            System.out.println("Driver Name"+offers[i].getDriver().getUserName()+"////"+"Price :"+offers[i].getprice());
+            System.out.println("Driver Name: "+offers[i].getDriver().getUserName()+"////"+"Price :"+offers[i].getprice());
         }
         }
         catch(Exception IO){

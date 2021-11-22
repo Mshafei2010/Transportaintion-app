@@ -39,6 +39,7 @@ public class SW {
              System.out.println("3- show pending driver registeration :");
              System.out.println("4- sign in as driver :");
              System.out.println("5- sign in as client:");
+             System.out.println("6- Exit");
              
              choice=cin.next();
             if(choice.equals("1")){
@@ -87,7 +88,7 @@ public class SW {
                 }
             
             }
-            else if(choice.equalsIgnoreCase("4"))
+            else if(choice.equalsIgnoreCase("4")&&driversystem.size()>=1)
             {
                 System.out.println("Enter your name: ");
                 name=cin.next();
@@ -106,7 +107,7 @@ public class SW {
                 {
                     System.out.println("Sign in completed"); 
                     System.out.println("click (1) to - Add A new Favourite Area");
-                    System.out.println("click (2) to - list all req");
+                    System.out.println("click (2) to - list all reqested rides");
                      String choice2=cin.next();
                      if(choice2.equalsIgnoreCase("1"))
                      {
@@ -114,7 +115,7 @@ public class SW {
                              String src=cin.next();
                              d2.AddFavArea(src);
                      }
-                     else if(choice2.equalsIgnoreCase("2"))
+                     else if(choice2.equalsIgnoreCase("2")&&r.size()>=1)
                      {
                         List<ReqRide>driverfav= d2.listreqrides(r);
                         System.out.println("Enter ride number to add offer");
@@ -132,7 +133,7 @@ public class SW {
                 }
                 
             }
-             else if(choice.equalsIgnoreCase("5"))
+             else if(choice.equalsIgnoreCase("5")&&client.size()>0)
             {
                 System.out.println("Enter your name: ");
                 name=cin.next();
@@ -168,6 +169,11 @@ public class SW {
                 }
                 
             }
+             else if(choice.equalsIgnoreCase("6"))
+             {
+                 System.exit(0);
+             }
+            
             
             
             
