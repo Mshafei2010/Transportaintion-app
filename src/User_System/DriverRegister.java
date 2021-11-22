@@ -16,17 +16,17 @@ import java.util.logging.Logger;
 
 public class DriverRegister extends Register{
     Admin admin;
-    boolean state=false;
     
     public void NotifyAdmin(Person person)
     {
-       admin.updatePendingReg(person);
+       admin.updatePendingReg((Driver) person);
     }
 
 
     @Override
     public boolean Regist(Person person) {
-        if (state)
+         Driver driver=(Driver) person;
+        if (driver.getstate())
         {
             try {
              //Adding the user name to a client file .txt that contains all usersname 
@@ -50,13 +50,15 @@ public class DriverRegister extends Register{
             return false;
         }
         }
-        return false;
+        else
+        {
+            NotifyAdmin(person);
+            return false;
+        
+        }
         
         }
 
-    public void setState(boolean state) {
-        this.state = state;
-    }
 
 
     

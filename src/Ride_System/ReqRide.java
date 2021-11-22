@@ -25,6 +25,7 @@ public class ReqRide extends Ride{
     }
     public ReqRide(Client client, String src, String dest) {
         super(client, src, dest);
+        Notifyofarea();
     }
     
     
@@ -39,6 +40,10 @@ public class ReqRide extends Ride{
     public void Notify()
     {
         client.update();
+    }
+    public void Notifyofarea()
+    {
+        System.out.println("Driver ->New Request added please list all requests to get your favourite");
     }
 
     public  CompleteRide pickOffer(Offer offers) {

@@ -88,9 +88,18 @@ public class Driver extends Person implements User{
         
     }
 
+    public String getDriverLicense() {
+        return DriverLicense;
+    }
+
+    public String getNationalID() {
+        return NationalID;
+    }
+    
+
     @Override
     public boolean Signup(Register register) {
-        
+        setRegister(register);
         if(register.Regist(this))
         {
             try {
@@ -114,6 +123,10 @@ public class Driver extends Person implements User{
     
     public void setState(boolean state) {
         this.state = state;
+    }
+    public boolean getstate()
+    {
+        return state;
     }
     
    public boolean isverified()
@@ -149,9 +162,7 @@ public class Driver extends Person implements User{
     }
 
   
-    public Ride[] listreqrides(ReqRide[] requests) {
-        
-        Ride[] favrequests=new Ride[requests.length];
+    public void listreqrides(ReqRide[] requests) {
         int counter=0;
         for (int i=0;i<requests.length;i++)
         {
@@ -159,11 +170,10 @@ public class Driver extends Person implements User{
             {
             if(requests[i].getSrc().contains(favoriteareas[c]))
             {
-                favrequests[counter]=requests[i];
+                System.out.println("ride 1-> src :" +requests[i].getSrc()+"  destination: "+requests[i].getDest()+"  Client Name:" +requests[i].getClient().getUserName());
             }
         }
         }
-        return favrequests;
         
     }
 

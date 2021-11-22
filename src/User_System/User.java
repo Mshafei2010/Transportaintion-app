@@ -18,7 +18,7 @@ public interface User {
     public void selectOffer(Offer offer) ;
     public void AddFavArea(String area);
     public void addOffer(ReqRide ride, int price) ;
-    public Ride[] listreqrides(ReqRide[] requests);
+    public void listreqrides(ReqRide[] requests);
     
     
 }

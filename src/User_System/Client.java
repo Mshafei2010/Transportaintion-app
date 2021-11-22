@@ -81,7 +81,7 @@ public class Client extends Person implements User{
     }
 
     public ReqRide requestRide(String src, String dest) {
-       return new ReqRide(this, src, dest);
+       return requested=new ReqRide(this, src, dest);
     }
 
 
@@ -117,10 +117,7 @@ public class Client extends Person implements User{
     }
 
     @Override
-    public Ride[] listreqrides(ReqRide[] requests) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
+    public void listreqrides(ReqRide[] requests){}
     
     
 }

@@ -10,6 +10,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import static java.util.Collections.list;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,18 +21,19 @@ import java.util.logging.Logger;
  * @author Dell
  */
 public class Admin extends Person {
-    Person [] pendinglist;
+    List <Driver>pendinglist;
     int countpending=0;
     //Constructors
     public Admin(String UserName,String Password,String MoblieNumber,String Email) {
         //Calling the super class Consturctor
         super(UserName, Password,   MoblieNumber, Email);
-        pendinglist=new Person[100];
-        countpending=0;
+         pendinglist=new ArrayList<Driver>();
     }
     public Admin(String UserName,String Password,String MoblieNumber) {
          //Calling the super class Consturctor
         super( UserName, Password,MoblieNumber);
+        pendinglist=new ArrayList<Driver>();
+        countpending=0;
     }
 
     @Override
@@ -64,27 +68,33 @@ public class Admin extends Person {
     }
     
     //
-    public Person[] listPendingReg()
+    public void listPendingReg()
     {
-        return pendinglist;   
+        for(int i=0;i<pendinglist.size();i++)
+        {
+             System.err.println((i+1)+"- Name :"+pendinglist.get(i).getUserName()+"// National ID:"+pendinglist.get(i).getNationalID()+"// Driver License:"+pendinglist.get(i).getDriverLicense());
+        }
     }
-     public void updatePendingReg(Person pdriver)
+     public void updatePendingReg(Driver pdriver)
      {
+         System.out.println("Admin:->Please check pending list");
          addpending(pdriver);
      }
-     public void verifyDriverregister(DriverRegister dregist)
+     public void verifyDriverregister(Driver driver)
      {
-         dregist.setState(true);
+         pendinglist.remove(driver);
+         driver.setState(true);
+         driver.Signup(driver.getRegister());
+         
      }
 
     @Override
     public boolean Signup(Register register) {
       return register.Regist(this);
     }
-      public void addpending(Person pdriver)
+      public void addpending(Driver pdriver)
     {
-        pendinglist[countpending]=pdriver;
-        countpending++;
+        boolean add = pendinglist.add(pdriver);
     }
 
     
