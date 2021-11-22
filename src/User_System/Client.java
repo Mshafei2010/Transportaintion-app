@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  */
 public class Client extends Person implements User{
     ReqRide requested;
-    Offer [] ridesoffer;
+    Offer [] ridesoffer= new Offer [100];
 
     public Client(String UserName,String Password,String MoblieNumber) {
         super(UserName, Password,MoblieNumber);
@@ -88,10 +88,15 @@ public class Client extends Person implements User{
 
     @Override
     public void listoffers(ReqRide ride) {
+        try{
         Offer[] offers=ride.getOffers();
         for (int i=0;i<offers.length;i++)
         {
-            System.err.println("Driver Name"+offers[i].getDriver().getUserName()+"////"+"Price :"+offers[i].getprice());
+            System.out.println("Driver Name"+offers[i].getDriver().getUserName()+"////"+"Price :"+offers[i].getprice());
+        }
+        }
+        catch(Exception IO){
+            System.out.print("");
         }
     }
 

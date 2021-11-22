@@ -29,7 +29,7 @@ public class Driver extends Person implements User{
     private String DriverLicense ;
    private boolean state=false;
    private int faindex=0;
-    String[] favoriteareas;
+    String[] favoriteareas=new String [100];
 //-ridesHistory:CompletedRide[]
 
      public Driver(String MoblieNumber, String Email, String Password, String UserName,String NationalID,String DriverLicense) {
@@ -59,7 +59,7 @@ public class Driver extends Person implements User{
     
     @Override
     public boolean login( String UserName, String Password){
- File file=new File("Files to launch\\Drivers\\"+UserName+".txt");
+    File file=new File("Files to launch\\Drivers\\"+UserName+".txt");
            if(file.exists())
            {
                FileReader fr = null;

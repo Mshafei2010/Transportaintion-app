@@ -11,7 +11,7 @@ import User_System.*;
  * @author mshaf
  */
 public class ReqRide extends Ride{
-    Offer[] offers;
+    Offer[] offers = new Offer[100];
     int indexOfOffer=0;
     String AName;
     
@@ -30,7 +30,8 @@ public class ReqRide extends Ride{
     
     public void addnewOffer(int price ,Driver driver)
     {
-        offers[indexOfOffer]=new Offer(price ,driver);
+        Offer off = new Offer(price ,driver); 
+        offers[indexOfOffer]= off ;
         indexOfOffer++;
         Notify();
     }
