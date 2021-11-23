@@ -59,7 +59,6 @@ public class SW {
                 d1.Signup(driverregist);
                 driver.add(d1);
                 driversystem.add(d1);
-                System.out.println("\n");
             }
             else if(choice.equals("2"))
             {
@@ -129,12 +128,11 @@ public class SW {
                         }
                      }
                     
-                    System.out.println("\n");
+                    
                 }
                 else
                 {
                     System.out.println("sign in rejected");
-                    System.out.println("\n");
                 }
                 
             }
