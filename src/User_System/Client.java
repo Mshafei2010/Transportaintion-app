@@ -76,8 +76,8 @@ public class Client extends Person implements User{
     }
 
     @Override
-    public void update() {
-        listoffers(requested);
+    public void update(ReqRide ride) {
+        listoffers(ride);
         
     }
 
@@ -118,7 +118,7 @@ public class Client extends Person implements User{
     }
 
     @Override
-    public List<ReqRide> listreqrides(List<ReqRide>requests){return null;
+    public List<ReqRide> listreqrides(){return null;
 }
     
     

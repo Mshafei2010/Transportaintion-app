@@ -30,8 +30,9 @@ public class Driver extends Person implements User{
     private String NationalID;
     private String DriverLicense ;
    private boolean state=false;
-   private int faindex=0;
-    String[] favoriteareas=new String [100];
+   List<String> favoriteareas=new ArrayList<String> ();
+    public static List <Driver>drivers=new ArrayList<Driver>();
+    public List<ReqRide> favRides=new ArrayList<ReqRide>();
 //-ridesHistory:CompletedRide[]
 
      public Driver(String MoblieNumber, String Email, String Password, String UserName,String NationalID,String DriverLicense) {
@@ -109,6 +110,7 @@ public class Driver extends Person implements User{
         setRegister(register);
         if(register.Regist(this))
         {
+            drivers.add(this);
             try {
                 File clientfile=new File("Files to launch\\Drivers\\"+UserName+".txt");
                 clientfile.createNewFile();
@@ -142,9 +144,10 @@ public class Driver extends Person implements User{
    }
 
     @Override
-    public void update() {
-        System.err.print("Client Notifcation");
-        System.err.print("New Request added please list requests");
+    public void update(ReqRide ride) {
+        System.out.println("Driver Notifcation For Driver :"+UserName);
+        System.out.println("New Request added ");
+        addFavRides(ride);
     }
 
 
@@ -160,8 +163,7 @@ public class Driver extends Person implements User{
 
     
     public void AddFavArea(String area) {
-        favoriteareas[faindex]=area;
-        faindex++;
+        favoriteareas.add(area);
     }
 
     
@@ -169,24 +171,32 @@ public class Driver extends Person implements User{
        ride.addnewOffer(price, this);
     }
 
+    public void addFavRides(ReqRide favRides) {
+        this.favRides.add(favRides);
+    }
   
-    public List<ReqRide> listreqrides(List<ReqRide> requests) {
-        List<ReqRide> toreturn=new ArrayList<ReqRide>();
-        int counter=0;
-        for (int i=0;i<requests.size();i++)
+  
+    public List<ReqRide> listreqrides() {
+        for (int i=0;i<favRides.size();i++)
         {
-            for(int c=0;c<faindex;c++)
-            {
-            if(requests.get(i).getSrc().contains(favoriteareas[c]))
-            {
-                toreturn.add(requests.get(i));
-                System.out.println("ride 1-> src :" +requests.get(i).getSrc()+"  destination: "+requests.get(i).getDest()+"  Client Name:" +requests.get(i).getClient().getUserName());
-            }
+               System.out.println("for Driver"+getUserName());
+                System.out.println((i+1)+" ->ride -> src :" +favRides.get(i).getSrc()+"  destination: "+favRides.get(i).getDest());
         }
-        }
-        return toreturn;
+        return favRides;
         
     }
+
+
+    public static List<Driver> getDrivers() {
+        return drivers;
+    }
+
+    public List<String> getFavoriteareas() {
+        return favoriteareas;
+    }
+
+    
+    
 
 
 }

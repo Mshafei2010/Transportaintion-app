@@ -117,12 +117,15 @@ public class SW {
                      }
                      else if(choice2.equalsIgnoreCase("2")&&r.size()>=1)
                      {
-                        List<ReqRide>driverfav= d2.listreqrides(r);
+                        List<ReqRide>driverfav= d2.listreqrides();
                         System.out.println("Enter ride number to add offer");
                         int num=cin.nextInt();
+                        if(driverfav.size()>=num)
+                        {
                          System.out.println("Enter your offer please");
                          int offer=cin.nextInt();
                         driverfav.get(num-1).addnewOffer(offer, d2);
+                        }
                      }
                     
                     

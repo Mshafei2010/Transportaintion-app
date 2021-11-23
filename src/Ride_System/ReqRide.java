@@ -6,6 +6,7 @@
 package Ride_System;
 
 import User_System.*;
+import java.util.List;
 /**
  *
  * @author mshaf
@@ -39,11 +40,21 @@ public class ReqRide extends Ride{
 
     public void Notify()
     {
-        client.update();
+        client.update(this);
     }
     public void Notifyofarea()
     {
-        System.out.println("Driver ->New Request added please list all requests to get your favourite");
+        List<Driver>drivers=Driver.getDrivers();
+        for(int i=0;i<drivers.size();i++)
+        {
+            List<String>favareas=drivers.get(i).getFavoriteareas();
+            if(favareas.contains(this.src))
+            {
+                drivers.get(i).update(this);
+            }
+            
+           
+        }
         
     }
 

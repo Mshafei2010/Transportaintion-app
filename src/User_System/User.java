@@ -14,12 +14,12 @@ import java.util.List;
  */
 public interface User {
     
-    public void update();
+    public void update(ReqRide ride);
     public void listoffers(ReqRide ride);
     public void selectOffer(Offer offer) ;
     public void AddFavArea(String area);
     public void addOffer(ReqRide ride, int price) ;
-    public List<ReqRide>listreqrides(List<ReqRide> requests);
+    public List<ReqRide>listreqrides();
     
     
 }
