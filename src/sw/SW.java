@@ -103,7 +103,7 @@ public class SW {
                         d2=driversystem.get(i);
                     }}
                 
-                if(d2.login(name, password)&&null!=d2)
+                if(d2!=null&&d2.login(name, password))
                 {
                     System.out.println("Sign in completed"); 
                     System.out.println("click (1) to - Add A new Favourite Area");
@@ -147,7 +147,7 @@ public class SW {
                     if(name.equals(client.get(i).getUserName())&&password.equals(client.get(i).getPassword()))
                         c1=client.get(i);
                 }
-                if(c1.login(name, password)||c1!=null)
+                if(c1!=null&&c1.login(name, password))
                 {
                     System.out.println("Sign in completed");
                      System.out.println("click (1) to - Request a Ride as Client");
