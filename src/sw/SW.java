@@ -18,6 +18,8 @@ public class SW {
         Scanner cin = new Scanner(System.in);
         //admin register
         Admin admin=new Admin("shaf3i", "123", "0123");
+        int clientcounter=0;
+        int drivercounter=0;
         Register regadmin=new AdminRegister();
         admin.Signup(regadmin);
         List <Driver>driversystem=new ArrayList<Driver> ();
@@ -59,10 +61,14 @@ public class SW {
                 d1.Signup(driverregist);
                 driver.add(d1);
                 driversystem.add(d1);
+                if(d1.Signup(clientRegister)){
+                     System.out.println("driver "+ ++drivercounter +" -->regsiter completed");
+              
+                }
             }
             else if(choice.equals("2"))
             {
-                System.out.print("Register as A client please");
+                System.out.println("Register as A client please");
                 System.out.println("Enter your name: ");
                 name=cin.next();
                 System.out.println("Enter your password: ");
@@ -72,7 +78,7 @@ public class SW {
                 Client c=new Client(name, password, phoneNumber);
                 client.add(c);
                 if(c.Signup(clientRegister)){
-                     System.out.println("client1-->regsiter completed");
+                     System.out.println("client "+ ++clientcounter +" -->regsiter completed");
               
                 }
             }
