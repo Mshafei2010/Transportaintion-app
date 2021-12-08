@@ -27,7 +27,7 @@ public class SW {
         DriverRegister driverregist=new DriverRegister();
         ClientRegister clientRegister=new ClientRegister();
         driverregist.setAdmin(admin);
-        String name,password,phoneNumber,NAID,license,choice;
+        String name,password,phoneNumber,NAID,license,email,choice;
         List <ReqRide>r=new ArrayList<ReqRide>();
         Driver d1;
         Client c1 = null;
@@ -44,32 +44,36 @@ public class SW {
              choice=cin.next();
             if(choice.equals("1")){
         //driver register 
-       
+                 cin.nextLine();
                  System.out.println("Enter your name: ");
-                 name=cin.next();
+                 name=cin.nextLine();
                  System.out.println("Enter your password: ");
-                 password=cin.next();
+                 password=cin.nextLine();
                  System.out.println("Enter your phone number: ");
-                phoneNumber=cin.next();
-                System.out.println("Enter your  National ID: ");
-                NAID=cin.next();
+                phoneNumber=cin.nextLine();
+                System.out.println("Enter your  Email(optional if you want to skip press enter): ");
+                email=cin.nextLine();
+                 System.out.println("Enter your  National ID: ");
+                NAID=cin.nextLine();
                 System.out.println("Enter your License: ");
-                license=cin.next();
-                d1= new Driver(name,password,phoneNumber,NAID,license);
+                license=cin.nextLine();
+                d1= new Driver(phoneNumber, email, password, name, NAID, license);
                 d1.Signup(driverregist);
                 driver.add(d1);
                 driversystem.add(d1);
             }
             else if(choice.equals("2"))
             {
-                System.out.print("Register as A client please");
+                cin.nextLine();
                 System.out.println("Enter your name: ");
-                name=cin.next();
+                name=cin.nextLine();
                 System.out.println("Enter your password: ");
-                password=cin.next();
+                password=cin.nextLine();
                 System.out.println("Enter your phone number: ");
-                phoneNumber=cin.next();
-                Client c=new Client(name, password, phoneNumber);
+                phoneNumber=cin.nextLine();
+                System.out.println("Enter your  Email(optional if you want to skip press enter): ");
+                email=cin.nextLine();
+                Client c=new Client(name, password, phoneNumber, email);
                 client.add(c);
                 if(c.Signup(clientRegister)){
                      System.out.println("client1-->regsiter completed");
