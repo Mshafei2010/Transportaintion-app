@@ -32,7 +32,7 @@ public class DriverModel {
             {
                 
                 String Name=resultset.getString("Name");
-                System.err.println(Name);
+                
                 if(Name.equalsIgnoreCase(driver.getUserName()))
                 {
                      
@@ -50,7 +50,7 @@ public class DriverModel {
                         driver.setUserName(Name);
                         
                         con.close();
-                        System.err.println("asffad");
+                        
                         return true;
                     }
                 }
