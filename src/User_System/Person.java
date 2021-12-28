@@ -69,11 +69,8 @@ public abstract class Person {
         return register;
     }
     
-    public abstract boolean Signup(Register register );
+    public abstract boolean insert(Register register );
     
-    //login
-    public abstract boolean login( String UserName, String Password);
-    public abstract void logout();
     
     
     

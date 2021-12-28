@@ -21,9 +21,8 @@ public class CompleteRide extends Ride{
         super(client, src, Dest);
         this.driver=driver;
     }
-    public void Notify() {
+    public void Notifyclient() {
         System.out.println("Ride is Completed");
-       
     }
     public void setRate(int rate) {
         this.rate = rate;

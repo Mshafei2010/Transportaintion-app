@@ -2,6 +2,21 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/sw/SW.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/AdminRegister.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/DriverView.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Driver.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/AdminController.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/AdminView.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/DriverRegister.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Admin.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/DriverController.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/Ride_System/ReqRide.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/ClientController.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/Client.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/User_System/ClientRegister.java</file>
+            <file>file:/C:/Users/Dell/Desktop/SW/Transportaintion-app/src/NotificationCenter/Notification.java</file>
+        </group>
     </open-files>
 </project-private>

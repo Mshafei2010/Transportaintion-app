@@ -23,7 +23,7 @@ public abstract class Ride {
         this.dest=dest;
         this.src=src;
     }
-    public abstract void Notify();
+    public abstract void Notifyclient();
     
     public void setClient(Client client) {
         this.client = client;

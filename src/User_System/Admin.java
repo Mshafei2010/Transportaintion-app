@@ -10,6 +10,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import static java.util.Collections.list;
 import java.util.List;
@@ -21,79 +26,79 @@ import java.util.logging.Logger;
  * @author Dell
  */
 public class Admin extends Person {
-    List <Driver>pendinglist;
+  
     //Constructors
     public Admin(String UserName,String Password,String MoblieNumber,String Email) {
         //Calling the super class Consturctor
         super(UserName, Password,   MoblieNumber, Email);
-         pendinglist=new ArrayList<Driver>();
+       
     }
     public Admin(String UserName,String Password,String MoblieNumber) {
          //Calling the super class Consturctor
         super( UserName, Password,MoblieNumber);
-        pendinglist=new ArrayList<Driver>();
-    }
-
-    @Override
-    public boolean login( String UserName, String Password) {
-  File file=new File("Files to launch\\Admins\\"+UserName+".txt");
-           if(file.exists())
-           {
-               FileReader fr = null;
-               try {
-                   fr = new FileReader (file.getPath());
-                   BufferedReader inf = new BufferedReader(fr);
-                   String line;
-                while((line=inf.readLine())!=null){
-                    if (Password.contains(line))
-                        return true;
-                }
-                fr.close();
-                } catch (FileNotFoundException ex) {
-                   Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-               }  catch (IOException ex) {
-                       Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-               }
-           }
-
-        return false;       
-    }
-
- 
-    @Override
-    public void logout() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
-    //
-    public void listPendingReg()
-    {
-        for(int i=0;i<pendinglist.size();i++)
-        {
-             System.out.println((i+1)+"- Name :"+pendinglist.get(i).getUserName()+"// National ID:"+pendinglist.get(i).getNationalID()+"// Driver License:"+pendinglist.get(i).getDriverLicense());
+    }
+    public boolean validate() {
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            ResultSet resultset=smt.executeQuery("SELECT * From Admin");
+            while(resultset.next())
+            {
+                String Name=resultset.getString("Name");
+                if(Name.equalsIgnoreCase(UserName))
+                {
+                    String password=resultset.getString("Password");
+                    if(password.equals(Password))
+                    {
+                        String Number=resultset.getString("Number");
+                        this.setMoblieNumber(Number);
+                        String email=resultset.getString("Email");
+                        this.setEmail(email); 
+                        con.close();
+                        return true;
+                    }
+                }
+            }
+            con.close();   
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
         }
     }
-     public void updatePendingReg(Driver pdriver)
-     {
-         System.out.println("Admin:->Please check pending list");
-         addpending(pdriver);
-     }
-     public void verifyDriverregister(Driver driver)
-     {
-         driver.setState(true);
-         driver.Signup(driver.getRegister());
-         pendinglist.remove(driver);
-         
+     public void verifyDriverDatabase(String name) throws ClassNotFoundException, SQLException
+     {   try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            ResultSet resultset=smt.executeQuery("SELECT * From driver where Name='"+name+"'");
+            boolean first = resultset.next();
+            if(first){
+                    String Name=resultset.getString("Name");
+                    String NationalID=resultset.getString("ID");
+                    String DL=resultset.getString("driver_license");
+                    Statement smt2=con.createStatement();
+                    int state =1;
+                    String dbo;
+                    dbo = "Update driver set state="+state+" where Name='"+name+"'";
+                    smt.execute(dbo);
+                    
+                    System.out.println("Driver ->Name :"+Name+"///National ID :"+NationalID+"///Driver License :"+DL+" IS Verified Successfuly");
+            }
+            con.close();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
      }
 
-    @Override
-    public boolean Signup(Register register) {
-      return register.Regist(this);
-    }
-      public void addpending(Driver pdriver)
-    {
-        boolean add = pendinglist.add(pdriver);
-    }
 
+   
+    public boolean insert(Register register) {
+         if (register.Regist(this))
+            return true;
+        else
+            return false;
+    }
     
 }

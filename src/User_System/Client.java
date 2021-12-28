@@ -11,6 +11,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
@@ -20,7 +25,7 @@ import java.util.logging.Logger;
  *
  * @author Dell
  */
-public class Client extends Person implements User{
+public class Client extends Person {
     ReqRide requested;
     Offer [] ridesoffer= new Offer [100];
 
@@ -34,92 +39,48 @@ public class Client extends Person implements User{
 
     
 
-    @Override
-    public boolean login( String UserName, String Password) {
-        
-           File file=new File("Files to launch\\Clients\\"+UserName+".txt");
-           if(file.exists())
-           {
-               FileReader fr = null;
-               try {
-                   fr = new FileReader (file.getPath());
-                   BufferedReader inf = new BufferedReader(fr);
-                   String line;
-                while((line=inf.readLine())!=null){
-                    if (Password.contains(line))
+    public boolean validate() {
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            ResultSet resultset=smt.executeQuery("SELECT * From client");
+            while(resultset.next())
+            {
+                String Name=resultset.getString("clientName");
+                if(Name.equalsIgnoreCase(UserName))
+                {
+                    String password=resultset.getString("CPassword");
+                    if(password.equals(Password))
+                    {
+                        String Number=resultset.getString("CNumber");
+                        this.setMoblieNumber(Number);
+                        String email=resultset.getString("Email");
+                        this.setEmail(email);
+                        
+                        con.close();
                         return true;
+                    }
                 }
-                fr.close();
-                } catch (FileNotFoundException ex) {
-                   Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-               }  catch (IOException ex) {
-                       Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-               }
-           }
-
-        return false;
+            }
+            con.close();   
+            return false;
+        } catch (SQLException ex) {
+            Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     
 
 
-    @Override
-    public void logout() {
-       System.exit(0);
-    }
 
-    @Override
-    public boolean Signup(Register register) {
-        if (register.Regist(this))
+ 
+    public boolean insert(Register register) {
+         if (register.Regist(this))
             return true;
         else
             return false;
     }
 
-    @Override
-    public void update(ReqRide ride) {
-        listoffers(ride);
-        
-    }
-
-    public ReqRide requestRide(String src, String dest) {
-       return requested=new ReqRide(this, src, dest);
-    }
-
-
-
-    @Override
-    public void listoffers(ReqRide ride) {
-        try{
-        Offer[] offers=ride.getOffers();
-        for (int i=0;i<offers.length;i++)
-        {
-            System.out.println("Driver Name: "+offers[i].getDriver().getUserName()+"////"+"Price :"+offers[i].getprice());
-        }
-        }
-        catch(Exception IO){
-            System.out.print("");
-        }
-    }
-
-
-    @Override
-    public void selectOffer(Offer offer) {
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void AddFavArea(String area) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void addOffer(ReqRide ride, int price ) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<ReqRide> listreqrides(){return null;
-}
     
     
 }

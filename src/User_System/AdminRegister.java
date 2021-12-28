@@ -11,6 +11,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -27,28 +31,19 @@ public class AdminRegister extends Register{
 
     @Override
     public boolean Regist(Person person) {
-  try {
-             //Adding the user name to a client file .txt that contains all usersname 
-              File Users_File=new File("Files to launch\\Admins\\Admin.txt");
-             FileWriter Ustream=new FileWriter(Users_File,true);
-             BufferedWriter outusername=new BufferedWriter(Ustream);
-             outusername.append(person.getUserName()+"\n");
-             outusername.close();
-             //Creating a Data File That Contains all the data of the client
-            File clientfile=new File("Files to launch\\Admins\\"+person.getUserName()+".txt");
-            clientfile.createNewFile();
-            FileWriter fstream;
-            fstream = new FileWriter(clientfile, true);
-            BufferedWriter out = new BufferedWriter(fstream);
-            out.append(person.getUserName() + "\n");
-            out.append(person.getPassword()+ "\n");
-            out.append(person.getMoblieNumber()+"\n");
-            out.close();
+ 
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            
+            Statement smt=con.createStatement();
+            String dbo="Insert Into Admin (Name,Email,Number,Password)values('"+person.getUserName()+"','"+person.getEmail()+"','"+person.getMoblieNumber()+"','"+person.getPassword()+"')";
+            smt.execute(dbo);
+            smt.close();
+            con.close();
             return true;
-        } catch (IOException ex) {
+        } catch (SQLException ex) {
             return false;
         }
- 
         }
 
 

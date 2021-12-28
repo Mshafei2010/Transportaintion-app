@@ -6,6 +6,7 @@
 package sw;
 import User_System.*;
 import Ride_System.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,21 +15,35 @@ public class SW {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException, SQLException {
         Scanner cin = new Scanner(System.in);
+        while (true)
+        {
+            System.out.println("1-Admin");
+            System.out.println("2-Driver");
+            System.out.println("3-client");
+            int choice=cin.nextInt();
+            if(choice==1)
+            {
+                AdminView adminmenu=new AdminView();
+                adminmenu.ListAdminMenu();
+            }
+            else if(choice==2)
+            {
+                DriverView drivermenu=new DriverView();
+                drivermenu.ListDriverMenu();
+            }
+        }
+        /*
         //admin register
         Admin admin=new Admin("shaf3i", "123", "0123");
         Register regadmin=new AdminRegister();
         admin.Signup(regadmin);
-        List <Driver>driversystem=new ArrayList<Driver> ();
-        List <Driver>driver=new ArrayList<Driver> ();
-        List <Client>client=new ArrayList<Client> ();
         //making this admin aproving the drivers
         DriverRegister driverregist=new DriverRegister();
         ClientRegister clientRegister=new ClientRegister();
         driverregist.setAdmin(admin);
         String name,password,phoneNumber,NAID,license,email,choice;
-        List <ReqRide>r=new ArrayList<ReqRide>();
         Driver d1;
         Client c1 = null;
         Driver d2=null;
@@ -44,23 +59,21 @@ public class SW {
              choice=cin.next();
             if(choice.equals("1")){
         //driver register 
-                 cin.nextLine();
+                 
                  System.out.println("Enter your name: ");
-                 name=cin.nextLine();
+                 name=cin.next();
                  System.out.println("Enter your password: ");
-                 password=cin.nextLine();
+                 password=cin.next();
                  System.out.println("Enter your phone number: ");
-                phoneNumber=cin.nextLine();
+                phoneNumber=cin.next();
                 System.out.println("Enter your  Email(optional if you want to skip press enter): ");
-                email=cin.nextLine();
+                email=cin.next();
                  System.out.println("Enter your  National ID: ");
-                NAID=cin.nextLine();
+                NAID=cin.next();
                 System.out.println("Enter your License: ");
-                license=cin.nextLine();
+                license=cin.next();
                 d1= new Driver(phoneNumber, email, password, name, NAID, license);
                 d1.Signup(driverregist);
-                driver.add(d1);
-                driversystem.add(d1);
             }
             else if(choice.equals("2"))
             {
@@ -74,25 +87,25 @@ public class SW {
                 System.out.println("Enter your  Email(optional if you want to skip press enter): ");
                 email=cin.nextLine();
                 Client c=new Client(name, password, phoneNumber, email);
-                client.add(c);
                 if(c.Signup(clientRegister)){
                      System.out.println("client1-->regsiter completed");
               
+                }
+                else
+                {
+                    System.out.println("client-->You Already Registered in the system try to log in");
                 }
             }
             else if(choice.equalsIgnoreCase("3"))
             {
                 admin.listPendingReg();
-              System.out.print("Admin->type the number of the driver you want to verify:");
-             int choice2;
-                choice2 = cin.nextInt();
-                if(choice2<=driver.size()){
-                           admin.verifyDriverregister(driver.get(choice2-1));
-                           driver.remove(driver.get(choice2-1));
-                }
+              System.out.print("Admin->type the Name of the driver you want to verify:");
+               String choice2;
+                choice2 = cin.next();
+                admin.verifyDriverregister(choice2);
             
             }
-            else if(choice.equalsIgnoreCase("4")&&driversystem.size()>=1)
+            else if(choice.equalsIgnoreCase("4"))
             {
                 System.out.println("Enter your name: ");
                 name=cin.next();
@@ -100,14 +113,8 @@ public class SW {
                 password=cin.next();
                 System.out.println("Enter your phone number: ");
                 phoneNumber=cin.next();
-                for(int i=0;i<driversystem.size();i++)
-                {
-                    if(name.equals(driversystem.get(i).getUserName())&&password.equals(driversystem.get(i).getPassword()))
-                    {
-                        d2=driversystem.get(i);
-                    }}
-                
-                if(d2!=null&&d2.login(name, password))
+                d2=new Driver(name, password, phoneNumber);
+                if(d2.login(name, password))
                 {
                     System.out.println("Sign in completed"); 
                     System.out.println("click (1) to - Add A new Favourite Area");
@@ -119,9 +126,13 @@ public class SW {
                              String src=cin.next();
                              d2.AddFavArea(src);
                      }
-                     else if(choice2.equalsIgnoreCase("2")&&r.size()>=1)
+                     else if(choice2.equalsIgnoreCase("2"))
                      {
                         List<ReqRide>driverfav= d2.listreqrides();
+                         for(int i=0;i<driverfav.size();i++)
+                         {
+                             System.out.println((i+1)+"-Requested from user-->"+driverfav.get(i).getClient().getUserName()+"//Src->>"+driverfav.get(i).getSrc());
+                         }
                         System.out.println("Enter ride number to add offer");
                         int num=cin.nextInt();
                         if(driverfav.size()>=num)
@@ -140,7 +151,7 @@ public class SW {
                 }
                 
             }
-             else if(choice.equalsIgnoreCase("5")&&client.size()>0)
+             else if(choice.equalsIgnoreCase("5"))
             {
                 System.out.println("Enter your name: ");
                 name=cin.next();
@@ -148,25 +159,20 @@ public class SW {
                 password=cin.next();
                 System.out.println("Enter your phone number: ");
                 phoneNumber=cin.next();
+                c1=new Client(name, password, phoneNumber);
                 
-                for(int i=0;i<client.size();i++)
-                {
-                    if(name.equals(client.get(i).getUserName())&&password.equals(client.get(i).getPassword()))
-                        c1=client.get(i);
-                }
-                if(c1!=null&&c1.login(name, password))
+                if(c1.login(name, password))
                 {
                     System.out.println("Sign in completed");
                      System.out.println("click (1) to - Request a Ride as Client");
                     String choice2=cin.next();
                     if(choice2.equalsIgnoreCase("1"))
                     {
-                         c1=client.get(0);
                          System.out.println("Enter your src: ");
                          String src=cin.next();
                          System.out.println("Enter your dest: ");
                          String dest=cin.next();
-                         r.add(c1.requestRide(src, dest));
+                         c1.requestRide(src, dest);
                     }
                     
                 }
@@ -354,6 +360,7 @@ public class SW {
             System.out.println(d.getUserName());
             System.out.println(d.getMoblieNumber());
         }*/
+        
     }
     
 }
