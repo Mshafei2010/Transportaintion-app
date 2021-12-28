@@ -85,7 +85,7 @@ public class ReqRide extends Ride{
     
     public void addnewOffer(int price ,Driver driver)
     {
-        Offer offer= new Offer(price ,driver); 
+        Offer offer= new Offer(price ,driver,client); 
         offers.add(offer) ;
         Notifyclient();
     }

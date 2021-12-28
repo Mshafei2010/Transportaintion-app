@@ -16,13 +16,14 @@ import java.util.List;
  * @author Dell
  */
 public class DriverController {
-
-    public DriverController() {
-     
+  
+   DriverModel driverModel;
+    public DriverController(Driver driver) {
+     driverModel =new DriverModel();
     }
 
     public boolean login(Driver driver){
-       return driver.validate();
+       return driverModel.validate(driver);
     }
       public void logout() {
             System.exit(0);
@@ -31,12 +32,12 @@ public class DriverController {
     public boolean SignUp(Driver driver) {
         
       Register register=new DriverRegister();
-      return driver.insert(register);
+      return driverModel.insert(driver,register);
       
     }
    
     public void AddFavArea(String Area,Driver driver) {
-        driver.InsertFavArea(Area);
+        driverModel.InsertFavArea(driver,Area);
         
     }
     
@@ -45,7 +46,7 @@ public class DriverController {
         return rides=ReqRide.retriveRides(driver);
     }
     public ArrayList<Notification> Notifications(Driver driver) throws SQLException {
-       return Notification.Retrive(driver, "Driver");
+       return Notification.Retrive(driver,"Driver");
     }
     
     

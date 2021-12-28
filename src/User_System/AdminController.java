@@ -21,6 +21,11 @@ import java.util.logging.Logger;
  * @author Dell
  */
 public class AdminController {
+    Admin admin;
+
+    public AdminController(Admin admin ) {
+        this.admin = admin;
+    }
     
      public boolean login(Admin admin) {
        return admin.validate();
@@ -47,7 +52,7 @@ public class AdminController {
 
  public ArrayList<Driver> listPendingReg() throws ClassNotFoundException, SQLException
     {
-       return Driver.retrivependingDrivers();
+       return DriverModel.retrivependingDrivers();
     }
       
      

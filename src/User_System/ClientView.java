@@ -14,15 +14,15 @@ import java.util.Scanner;
  *
  * @author Dell
  */
-public class AdminView {
+public class ClientView {
     
-     AdminController adminController;
-      public void ListAdminMenu() throws SQLException, ClassNotFoundException
+    ClientController clientcontroller;
+    public void ListAdminMenu() throws SQLException, ClassNotFoundException
     {
         while(true){
     
             Scanner cin = new Scanner(System.in);
-            Admin admin;
+            Client client;
             System.out.println("Admin menu:");
             System.out.println("1- Register as An Admin:");
             System.out.println("2- sign in as Admin :");
@@ -40,9 +40,9 @@ public class AdminView {
                  phoneNumber=cin.next();
                 System.out.println("Enter your  Email(optional if you want to skip press enter): ");
                 email=cin.next();
-                admin =new Admin(name, password, phoneNumber, email);
-                adminController=new AdminController(admin);
-                if(adminController.Signup(admin))
+               client =new Client(name, password, phoneNumber, email);
+               clientcontroller=new ClientController();
+                if(clientcontroller.Signup(client))
                 {
                     System.out.println("\nSign UP Completed");
                 }
@@ -59,33 +59,33 @@ public class AdminView {
                  password=cin.next();
                  System.out.println("Enter your phone number: ");
                  phoneNumber=cin.next();
-                 admin =new Admin(name, password, phoneNumber);
-                 if(adminController.login(admin))
+                 client=new Client(name, password, phoneNumber);
+                  clientcontroller=new ClientController();
+                 if(clientcontroller.login(client))
                  {
                       System.out.println("Sign in completed"); 
                     System.out.println("click (1) to - Get Your Notifications");
-                    System.out.println("click (2) to - list all Pending Registerations");
+                    System.out.println("click (2) to - list all Offers");
                     int choice2=cin.nextInt();
                     if(choice2==1){
-                        ArrayList<Notification> Notify=adminController.Notifications(admin);
+                        ArrayList<Notification> Notify=client.Notifications(client);
                         for (int i=0;i<Notify.size();i++) {
                             System.out.println((i+1)+"--->"+Notify.get(i).getMessage()+Notify.get(i).getName());
                                     }
+                        
+                       
                     }
-                    else if(choice2==2){
-                        ArrayList<Driver> pending=adminController.listPendingReg();
-                        for (int i=0;i<pending.size();i++) {
-                            System.out.println((i+1)+"-DriverName-->"+pending.get(i).getUserName()+" -Driver ID-->"+pending.get(i).getNationalID()+" -Driver License-->"+pending.get(i).getDriverLicense());   
-                        }
-                    }
+                 }
+                 else
+                 {
+                     System.out.println("\nlogin refused ");
                  }
             }
             else if(choice==3)
             {
                 break;
             }
-            
-          }
-    }
     
+}
+    }
 }

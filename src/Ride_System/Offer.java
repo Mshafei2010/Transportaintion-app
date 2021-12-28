@@ -5,6 +5,7 @@
  */
 package Ride_System;
 
+import User_System.Client;
 import User_System.Driver;
 
 /**
@@ -14,11 +15,13 @@ import User_System.Driver;
 public class Offer {
     float price=0;
     Driver driver;
+    Client client;
     
-    Offer(int price, Driver driver)
+    Offer(int price, Driver driver,Client client)
     {
         this.price=price;
         this.driver = driver;
+        this.client=client;
     }
     public void setprice(int price)
     {

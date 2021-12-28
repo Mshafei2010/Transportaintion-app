@@ -20,7 +20,7 @@ public class DriverView {
     DriverController driverController;
     public void ListDriverMenu() throws SQLException
     {
-         driverController= new DriverController();
+       
         while(true){
             Driver driver;
             System.out.println("\nDriver menu:");
@@ -46,6 +46,7 @@ public class DriverView {
                 System.out.println("Enter your License: ");
                 license=cin.next();
                 driver=new Driver(phoneNumber, email, password, name, NAID, license);
+                  driverController= new DriverController(driver);
                 driverController.SignUp(driver);
                 
                 System.out.println("\nYour request is pending till admin verfy it\n ");

@@ -12,15 +12,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientController {
-    Client client;
-    ReqRide requested;
-    public ClientController(String MoblieNumber, String Email, String Password, String UserName) {
-        client=new Client(UserName, Password, MoblieNumber, Email);
+    ClientModel clientmodel;
+    public ClientController() {
+        clientmodel= new ClientModel();
     }
     
     
-    public boolean login( ) {
-        return client.validate();
+    public boolean login(Client client) {
+        return clientmodel.validate(client);
     }
     
 
@@ -29,28 +28,29 @@ public class ClientController {
     }
 
 
-    public boolean Signup() {
+    public boolean Signup(Client client) {
         Register register =new ClientRegister();
-         return client.insert(register);
+         return clientmodel.insert(client,register);
     }
     
-    public ReqRide RequestRide(String src,String dest){
+    public ReqRide RequestRide(Client client,String src,String dest){
+        ReqRide requested;
           requested=new ReqRide(client, src, dest);
           requested.Insert(requested);
           return requested;
                 
     }   
-    public ArrayList<Offer> listoffers() {
-        if(requested!=null){
+    public ArrayList<Offer> listoffers(Client client) {
+     /*
             ArrayList <Offer> offers=new ArrayList<Offer>();
             offers=requested.getOffers();
             return offers;
-         
-        }
-    
+         */
+        
+   
             return null;
     }
-    public ArrayList<Notification> Notifications() throws SQLException
+    public ArrayList<Notification> Notifications(Client client) throws SQLException
     {  
        return Notification.Retrive(client,"Client");
     }

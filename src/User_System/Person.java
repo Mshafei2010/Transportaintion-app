@@ -69,8 +69,7 @@ public abstract class Person {
         return register;
     }
     
-    public abstract boolean insert(Register register );
-    
+     
     
     
     
