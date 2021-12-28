@@ -75,8 +75,12 @@ public class AdminView {
                     else if(choice2==2){
                         ArrayList<Driver> pending=adminController.listPendingReg();
                         for (int i=0;i<pending.size();i++) {
-                            System.out.println((i+1)+"-DriverName-->"+pending.get(i).getUserName()+" -Driver ID-->"+pending.get(i).getNationalID()+" -Driver License-->"+pending.get(i).getDriverLicense());   
+                            System.out.println((i+1)+"-DriverName-->"+pending.get(i).getUserName()+" -Driver ID-->"+pending.get(i).getNationalID()+" -Driver License-->"+pending.get(i).getDriverLicense());  
+                            
                         }
+                        System.out.println("Enter the Driver name to verfiy the registration: ");
+                         name=cin.next();
+                         adminController.verifyDriver(name, admin);
                     }
                  }
             }

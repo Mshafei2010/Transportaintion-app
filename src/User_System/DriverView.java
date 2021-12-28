@@ -60,6 +60,7 @@ public class DriverView {
                  System.out.println("Enter your phone number: ");
                  phoneNumber=cin.next();
                  driver=new Driver(phoneNumber, password, name);
+                 driverController= new DriverController(driver);
                  if(driverController.login(driver))
                  {
                      System.out.println("Sign in completed"); 
