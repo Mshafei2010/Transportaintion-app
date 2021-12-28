@@ -60,6 +60,7 @@ public class AdminView {
                  System.out.println("Enter your phone number: ");
                  phoneNumber=cin.next();
                  admin =new Admin(name, password, phoneNumber);
+                  adminController=new AdminController(admin);
                  if(adminController.login(admin))
                  {
                       System.out.println("Sign in completed"); 

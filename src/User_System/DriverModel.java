@@ -26,12 +26,17 @@ public class DriverModel {
         try {
             Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
             Statement smt=con.createStatement();
+            
             ResultSet resultset=smt.executeQuery("SELECT * From driver");
             while(resultset.next())
             {
+                
                 String Name=resultset.getString("Name");
+                System.err.println(Name);
                 if(Name.equalsIgnoreCase(driver.getUserName()))
                 {
+                     
+                    
                     String password=resultset.getString("Password");
                     if(password.equals(driver.getPassword()))
                     {
@@ -45,17 +50,18 @@ public class DriverModel {
                         driver.setUserName(Name);
                         
                         con.close();
-                        System.err.println(state);
-                        return state;
+                        System.err.println("asffad");
+                        return true;
                     }
                 }
-                con.close();
+                
             }
+            con.close();
              return false;
-        }  catch (SQLException ex) {
-            
-               return false;
-        }
+        } catch (SQLException ex) {
+            Logger.getLogger(DriverModel.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } 
     }
        public static ArrayList<Driver> retrivependingDrivers(){
          ArrayList<Driver> pendingdrivers=new ArrayList<Driver>();

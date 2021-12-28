@@ -22,25 +22,26 @@ import java.util.logging.Logger;
  */
 public class AdminController {
     Admin admin;
-
+   AdminModel adminmodel;
     public AdminController(Admin admin ) {
         this.admin = admin;
+        adminmodel =new AdminModel();
     }
     
      public boolean login(Admin admin) {
-       return admin.validate();
+       return adminmodel.validate(admin);
     }
       public void logout() {
         System.exit(0);
     } 
     public boolean Signup(Admin admin) {
       Register adminreg=new AdminRegister();
-      return admin.insert(adminreg);
+      return adminmodel.insert(admin, adminreg);
     }
     
      public void verifyDriver(String name,Admin admin) throws ClassNotFoundException, SQLException
      {  
-         admin.verifyDriverDatabase(name);
+         adminmodel.verifyDriverDatabase(name);
      }
      
       public ArrayList<Notification> Notifications(Admin admin) throws SQLException {

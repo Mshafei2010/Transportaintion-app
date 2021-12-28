@@ -22,7 +22,7 @@ public class DriverView {
     {
        
         while(true){
-            Driver driver;
+            
             System.out.println("\nDriver menu:");
             System.out.println("1- Register as A driver :");
             System.out.println("2- sign in as driver :");
@@ -33,6 +33,7 @@ public class DriverView {
              choice=cin.next();
                if(choice.equals("1")){
         //driver register 
+        Driver driver;
                  System.out.println("Enter your name: ");
                  name=cin.next();
                  System.out.println("Enter your password: ");
@@ -46,21 +47,22 @@ public class DriverView {
                 System.out.println("Enter your License: ");
                 license=cin.next();
                 driver=new Driver(phoneNumber, email, password, name, NAID, license);
-                  driverController= new DriverController(driver);
+                  driverController= new DriverController();
                 driverController.SignUp(driver);
                 
                 System.out.println("\nYour request is pending till admin verfy it\n ");
                }
                else if(choice.equals("2"))
                {
+                   Driver driver;
                  System.out.println("Enter your name: ");
                  name=cin.next();
                  System.out.println("Enter your password: ");
                  password=cin.next();
                  System.out.println("Enter your phone number: ");
                  phoneNumber=cin.next();
-                 driver=new Driver(phoneNumber, password, name);
-                 driverController= new DriverController(driver);
+                 driver=new Driver(name, password, phoneNumber);
+                 driverController= new DriverController();
                  if(driverController.login(driver))
                  {
                      System.out.println("Sign in completed"); 

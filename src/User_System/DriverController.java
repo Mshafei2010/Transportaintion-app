@@ -17,8 +17,9 @@ import java.util.List;
  */
 public class DriverController {
   
-   DriverModel driverModel;
-    public DriverController(Driver driver) {
+   Driver driver;
+    DriverModel driverModel;
+    public DriverController() {
      driverModel =new DriverModel();
     }
 
