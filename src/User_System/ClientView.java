@@ -6,6 +6,7 @@
 package User_System;
 
 import NotificationCenter.Notification;
+import Ride_System.Offer;
 import Ride_System.Ride;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -75,7 +76,16 @@ public class ClientView {
                             System.out.println((i+1)+"--->"+Notify.get(i).getMessage());
                         }
                     }
-                   
+                    else if(choice2==2){
+                        ArrayList<Offer>rideOfers=new ArrayList<Offer>();
+                        rideOfers=clientcontroller.listoffers(client);
+                         for (int i=0;i<rideOfers.size();i++) {
+                            System.out.println((i+1)+"--->"+rideOfers.get(i).getprice()+"//From Driver"+rideOfers.get(i).getDriver());
+                        }
+                         System.out.println("Enter Number of offer you want to pick"); 
+                         int num=cin.nextInt();
+                         clientcontroller.selectOffer(client,rideOfers.get(num-1));
+                    }
                     else if(choice2==3)
                     {
                          System.out.println("Enter your src: ");

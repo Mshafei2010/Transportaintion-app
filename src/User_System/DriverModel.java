@@ -6,6 +6,7 @@
 package User_System;
 
 import NotificationCenter.Notification;
+import NotificationCenter.NotificationModel;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -109,7 +110,7 @@ public class DriverModel {
     
       public boolean insert(Driver driver) throws SQLException {  
         Notification Notify = new Notification("New Pending Registeration From Driver -->","Admin",driver.getUserName());
-        Notify.Insert();
+          NotificationModel.Insert(Notify);
          
                  Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
                  Statement smt=con.createStatement();
@@ -121,4 +122,31 @@ public class DriverModel {
     
 
 }
+      public void updateBalance(String DriverName){
+          
+        try {
+           Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            ResultSet resultset=smt.executeQuery("SELECT * From Ride");
+            while(resultset.next())
+            {
+                String state =resultset.getString("State");
+                if(state.equals("Completed"))
+                {
+                    int price=resultset.getInt("price");
+                     String dbo = "Update Driver set DriverBalance=DriverBalance+"+price+" where Name='"+DriverName+"'";
+                     smt.execute(dbo);
+                      
+                      dbo = "Update Ride set State='"+"History"+"' where Dname='"+DriverName+"' AND State='"+"Completed"+"'";
+                      smt.execute(dbo);
+                    
+                }
+           
+            
+            
+        }
+        }catch (SQLException ex) {
+            Logger.getLogger(DriverModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+      }
 }

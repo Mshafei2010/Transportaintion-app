@@ -70,6 +70,8 @@ public class DriverView {
                     System.out.println("click (1) to - Add A new Favourite Area");
                     System.out.println("click (2) to - list all reqested rides and make Offer");
                     System.out.println("click (3) to - list all Notification");
+                     System.out.println("click (4) to - Start Your Ride");
+                      System.out.println("click (5) to - End Your Ride");
                      String choice2=cin.next();
                      if(choice2.equalsIgnoreCase("1"))
                      {
@@ -102,6 +104,13 @@ public class DriverView {
                              System.out.println((i+1)+"Notification -->"+notifications.get(i).getMessage());
                          }
                      }
+                      else if(choice2.equalsIgnoreCase("4"))
+                     {
+                        driverController.StartRide(name);
+                     }
+                      else if(choice2.equalsIgnoreCase("5")){
+                          driverController.EndRide(name);
+                      }
                  }
                  else
                  {

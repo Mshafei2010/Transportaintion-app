@@ -6,6 +6,7 @@
 package User_System;
 
 import NotificationCenter.Notification;
+import NotificationCenter.NotificationModel;
 import Ride_System.Offer;
 import Ride_System.*;
 import java.sql.SQLException;
@@ -46,13 +47,14 @@ public class ClientController {
     }
     public ArrayList<Notification> Notifications(Client client) throws SQLException
     {  
-       return Notification.Retrive(client,"Client");
+       return NotificationModel.Retrive(client,"Client");
     }
 
     
    
-    public void selectOffer(Offer offer) {
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void selectOffer(Client client,Offer offer) {
+        RideController rideController=new RideController();
+        rideController.Clientpickoffer(offer);
     }
     //List all Rides From The Ride history
     //list all rides from the SAME PLACE FAV AREA

@@ -6,6 +6,7 @@
 package User_System;
 
 import NotificationCenter.Notification;
+import NotificationCenter.NotificationModel;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,12 +45,12 @@ public class AdminController {
      }
      
       public ArrayList<Notification> Notifications(Admin admin) throws SQLException {
-          ArrayList<Notification> notification=Notification.RetriveNotification("Admin");
+          ArrayList<Notification> notification=NotificationModel.RetriveNotification("Admin");
           
        return notification;
     }
         public ArrayList<Notification> DeleteNotifications(Admin admin) throws SQLException {
-       return Notification.RetriveNotification("Admin");
+       return NotificationModel.RetriveNotification("Admin");
     }
       
     

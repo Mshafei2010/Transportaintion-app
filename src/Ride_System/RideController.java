@@ -37,6 +37,18 @@ public class RideController{
      {
          ridemodel.addnewOffer(offer);
      }
+     public  void Clientpickoffer(Offer offer){
+         ridemodel.pickOffer(offer);
+         ridemodel.NotifyDriver(offer.getDriver());
+         
+     }
+     public void RideBegin(String Name){
+          ridemodel.startmyRide(Name);
+     }
+      public void RideEnd(String Name){
+          ridemodel.endmyRide(Name);
+     }
+     
     
     
     
