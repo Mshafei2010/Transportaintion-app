@@ -11,7 +11,6 @@ public abstract class Person {
     protected String Email;
     protected String Password;
     protected String UserName;
-    protected Register register;
     
     //Constructors
     public Person(String UserName,String Password,String MoblieNumber, String Email ) {
@@ -61,13 +60,7 @@ public abstract class Person {
         return UserName;
     }
 
-    public void setRegister(Register register) {
-        this.register = register;
-    }
 
-    public Register getRegister() {
-        return register;
-    }
     
      
     

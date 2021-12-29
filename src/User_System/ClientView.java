@@ -6,6 +6,7 @@
 package User_System;
 
 import NotificationCenter.Notification;
+import Ride_System.Ride;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -17,15 +18,15 @@ import java.util.Scanner;
 public class ClientView {
     
     ClientController clientcontroller;
-    public void ListAdminMenu() throws SQLException, ClassNotFoundException
+    public void ListClientMenu() throws SQLException, ClassNotFoundException
     {
         while(true){
     
             Scanner cin = new Scanner(System.in);
             Client client;
-            System.out.println("Admin menu:");
-            System.out.println("1- Register as An Admin:");
-            System.out.println("2- sign in as Admin :");
+            System.out.println("Client menu:");
+            System.out.println("1- Register as A Client:");
+            System.out.println("2- sign in as Client :");
               System.out.println("3- Exit:");
             
             int choice= cin.nextInt();
@@ -41,7 +42,7 @@ public class ClientView {
                 System.out.println("Enter your  Email(optional if you want to skip press enter): ");
                 email=cin.next();
                client =new Client(name, password, phoneNumber, email);
-               clientcontroller=new ClientController();
+               clientcontroller=new ClientController(client);
                 if(clientcontroller.Signup(client))
                 {
                     System.out.println("\nSign UP Completed");
@@ -60,21 +61,31 @@ public class ClientView {
                  System.out.println("Enter your phone number: ");
                  phoneNumber=cin.next();
                  client=new Client(name, password, phoneNumber);
-                  clientcontroller=new ClientController();
+                  clientcontroller=new ClientController(client);
                  if(clientcontroller.login(client))
                  {
                       System.out.println("Sign in completed"); 
                     System.out.println("click (1) to - Get Your Notifications");
                     System.out.println("click (2) to - list all Offers");
+                     System.out.println("click (3) to - Request Ride");
                     int choice2=cin.nextInt();
                     if(choice2==1){
-                        ArrayList<Notification> Notify=client.Notifications(client);
+                        ArrayList<Notification> Notify=clientcontroller.Notifications(client);
                         for (int i=0;i<Notify.size();i++) {
-                            System.out.println((i+1)+"--->"+Notify.get(i).getMessage()+Notify.get(i).getName());
-                                    }
-                        
-                       
+                            System.out.println((i+1)+"--->"+Notify.get(i).getMessage());
+                        }
                     }
+                   
+                    else if(choice2==3)
+                    {
+                         System.out.println("Enter your src: ");
+                         String src=cin.next();
+                         System.out.println("Enter your dest: ");
+                         String dest=cin.next();
+                         Ride ride=clientcontroller.RequestRide(client, src, dest);
+                    }
+                    
+                    
                  }
                  else
                  {

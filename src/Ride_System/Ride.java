@@ -6,28 +6,32 @@
 package Ride_System;
 
 import User_System.Client;
+import User_System.Driver;
 
-/**
- *
- * @author mshaf
- */
-public abstract class Ride {
+
+public class Ride {
     protected String title;
     protected String description;
-    protected Client client;
+    protected String clientName;
     protected String src;
     protected String dest;
+    int rate;
+    Offer Cost;
+    Ridespec spec;
     
-    Ride(Client client , String src ,String dest){
-        this.client=client;
+    public Ride(String clientName , String src ,String dest){
+        this.clientName=clientName;
         this.dest=dest;
         this.src=src;
     }
-    public abstract void Notifyclient();
-    
-    public void setClient(Client client) {
-        this.client = client;
+    public void Notifyclient(){
+        
     }
+
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
+    }
+    
 
     public void setDescription(String description) {
         this.description = description;
@@ -45,9 +49,18 @@ public abstract class Ride {
         this.title = title;
     }
 
-    public Client getClient() {
-        return client;
+    public String getClientName() {
+        return clientName;
     }
+
+    public void setCost(Offer Cost) {
+        this.Cost = Cost;
+    }
+
+    public Offer getCost() {
+        return Cost;
+    }
+
 
     public String getSrc() {
         return src;

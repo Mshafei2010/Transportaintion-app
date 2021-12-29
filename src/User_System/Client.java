@@ -36,9 +36,5 @@ public class Client extends Person {
         //Calling the super class Consturctor
         super( UserName,Password, MoblieNumber,Email);
     }
-
-    ArrayList<Notification> Notifications(Client client) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }

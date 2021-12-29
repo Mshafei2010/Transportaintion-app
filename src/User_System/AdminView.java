@@ -65,7 +65,7 @@ public class AdminView {
                  {
                       System.out.println("Sign in completed"); 
                     System.out.println("click (1) to - Get Your Notifications");
-                    System.out.println("click (2) to - list all Pending Registerations");
+                    System.out.println("click (2) to - list all Pending Registeration");
                     int choice2=cin.nextInt();
                     if(choice2==1){
                         ArrayList<Notification> Notify=adminController.Notifications(admin);

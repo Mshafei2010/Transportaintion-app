@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  */
 public class ClientModel {
  
-
-    public ClientModel() {
-       
+   Client client;
+    public ClientModel(Client client ) {
+       this.client=client;
     }
       
 
@@ -56,11 +56,21 @@ public class ClientModel {
     }
     
  
-    public boolean insert(Client client,Register register) {
-         if (register.Regist(client))
+    public boolean insert(Client client) {
+       try {
+             Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            
+            Statement smt=con.createStatement();
+            String dbo="Insert Into client (clientName,Email,CNumber,CPassword)values('"+client.getUserName()+"','"+client.getEmail()+"','"+client.getMoblieNumber()+"','"+client.getPassword()+"')";
+            smt.execute(dbo);
+            smt.close();
+            con.close();
             return true;
-        else
-            return false;
+          
+       } catch (SQLException ex) {
+           Logger.getLogger(ClientModel.class.getName()).log(Level.SEVERE, null, ex);
+       }
+       return false;
     }
 
     

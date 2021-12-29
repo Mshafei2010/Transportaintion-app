@@ -7,14 +7,14 @@ package User_System;
 
 import NotificationCenter.Notification;
 import Ride_System.Offer;
-import Ride_System.ReqRide;
+import Ride_System.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClientController {
     ClientModel clientmodel;
-    public ClientController() {
-        clientmodel= new ClientModel();
+    public ClientController(Client client) {
+        clientmodel= new ClientModel(client);
     }
     
     
@@ -29,26 +29,20 @@ public class ClientController {
 
 
     public boolean Signup(Client client) {
-        Register register =new ClientRegister();
-         return clientmodel.insert(client,register);
+         return clientmodel.insert(client);
     }
     
-    public ReqRide RequestRide(Client client,String src,String dest){
-        ReqRide requested;
-          requested=new ReqRide(client, src, dest);
-          requested.Insert(requested);
+    public Ride RequestRide(Client client,String src,String dest){
+           Ride requested=new Ride (client.getUserName(), src, dest);
+           RideController ridecontroller=new RideController();
+          ridecontroller.RequestnewRide(requested);
           return requested;
                 
     }   
     public ArrayList<Offer> listoffers(Client client) {
-     /*
-            ArrayList <Offer> offers=new ArrayList<Offer>();
-            offers=requested.getOffers();
-            return offers;
-         */
         
-   
-            return null;
+            RideController rideController=new RideController();
+            return rideController.getmyOffers(client.getUserName());
     }
     public ArrayList<Notification> Notifications(Client client) throws SQLException
     {  

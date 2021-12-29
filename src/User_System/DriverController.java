@@ -6,7 +6,9 @@
 package User_System;
 
 import NotificationCenter.Notification;
-import Ride_System.ReqRide;
+import Ride_System.Offer;
+import Ride_System.Ride;
+import Ride_System.RideController;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +32,10 @@ public class DriverController {
             System.exit(0);
         }
             
-    public boolean SignUp(Driver driver) {
+    public boolean SignUp(Driver driver) throws SQLException {
         
-      Register register=new DriverRegister();
-      return driverModel.insert(driver,register);
+   
+      return driverModel.insert(driver);
       
     }
    
@@ -42,17 +44,21 @@ public class DriverController {
         
     }
     
-    public List<ReqRide> listreqrides(Driver driver) {
-         ArrayList<ReqRide> rides=new ArrayList<ReqRide>();
-        return rides=ReqRide.retriveRides(driver);
+    public List<Ride> listreqrides(Driver driver) {
+       RideController ridecontoroller=new RideController();
+       return ridecontoroller.getmyRides(driver);
+        
     }
     public ArrayList<Notification> Notifications(Driver driver) throws SQLException {
        return Notification.Retrive(driver,"Driver");
     }
     
     
-    public void addOffer(ReqRide ride, int price,Driver driver) {
-       ride.addnewOffer(price, driver);
+    public void addOffer(Ride ride,int price,String Dname) {
+        Offer offer;
+       offer = new Offer(price, Dname, ride.getClientName());
+       RideController ridecontroller =new RideController();
+       ridecontroller.AddOffer(offer);
     }
 
     
