@@ -33,6 +33,11 @@ public class SW {
                 DriverView drivermenu=new DriverView();
                 drivermenu.ListDriverMenu();
             }
+            else if(choice==3)
+            {
+                ClientView clientview=new ClientView();
+                clientview.ListClientMenu();
+            }
         }
         /*
         //admin register

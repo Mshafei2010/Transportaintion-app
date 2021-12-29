@@ -95,6 +95,7 @@ public class Notification {
              con.close();
              return Notifys;
     }
+     
     
     public void setMessage(String Message) {
         this.Message = Message;

@@ -107,19 +107,18 @@ public class DriverModel {
         }
     }
     
-      public boolean insert(Driver driver,Register register) {  
-        driver.setRegister(register);
-        register.Regist(driver);
+      public boolean insert(Driver driver) throws SQLException {  
         Notification Notify = new Notification("New Pending Registeration From Driver -->","Admin",driver.getUserName());
         Notify.Insert();
-        if(driver.getstate()==0)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
+         
+                 Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+                 Statement smt=con.createStatement();
+                 String dbo="Insert Into driver (Name,Password,ID,driver_license,Number,state,Email)values('"+driver.getUserName()+"','"+driver.getPassword()+"','"+driver.getNationalID()+"','"+driver.getDriverLicense()+"','"+driver.getMoblieNumber()+"','"+driver.getstate()+"','"+driver.getEmail()+"')";
+                 smt.execute(dbo);
+                 smt.close();
+                 con.close();
+        return false;
+    
 
+}
 }

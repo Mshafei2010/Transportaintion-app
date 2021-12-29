@@ -6,8 +6,9 @@
 package User_System;
 
 import NotificationCenter.Notification;
-import Ride_System.ReqRide;
+import Ride_System.Ride;
 import java.sql.SQLException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -78,10 +79,11 @@ public class DriverView {
                      }
                      else if(choice2.equalsIgnoreCase("2"))
                      {
-                        List<ReqRide>driverfav= driverController.listreqrides(driver);
+                        List<Ride>driverfav= new ArrayList<Ride>();
+                          driverfav= driverController.listreqrides(driver);
                          for(int i=0;i<driverfav.size();i++)
                          {
-                             System.out.println((i+1)+"-Requested from user-->"+driverfav.get(i).getClient().getUserName()+"//Src->>"+driverfav.get(i).getSrc()+"//destination->>"+driverfav.get(i).getDest());
+                             System.out.println((i+1)+"-Requested from user-->"+driverfav.get(i).getClientName()+"//Src->>"+driverfav.get(i).getSrc()+"//destination->>"+driverfav.get(i).getDest());
                          }
                         System.out.println("Enter ride number to add offer");
                         int num=cin.nextInt();
@@ -89,7 +91,7 @@ public class DriverView {
                         {
                          System.out.println("Enter your offer please");
                          int offer=cin.nextInt();
-                         driverController.addOffer(driverfav.get(num-1), offer, driver);
+                         driverController.addOffer(driverfav.get(num-1), offer, driver.getUserName());
                         }
                      }
                       else if(choice2.equalsIgnoreCase("3"))

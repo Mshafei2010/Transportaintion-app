@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Dell
  */
 public class AdminModel {
-
+   Admin admin;
     
     public boolean validate(Admin admin) {
         try {
@@ -64,8 +64,6 @@ public class AdminModel {
                     String dbo;
                     dbo = "Update driver set state="+state+" where Name='"+name+"'";
                     smt.execute(dbo);
-                    
-                    System.out.println("Driver ->Name :"+Name+"///National ID :"+NationalID+"///Driver License :"+DL+" IS Verified Successfuly");
             }
             con.close();
             
@@ -76,11 +74,15 @@ public class AdminModel {
 
 
    
-    public boolean insert(Admin admin,Register register) {
-         if (register.Regist(admin))
+    public boolean insert(Admin admin) throws SQLException {
+             Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            
+            Statement smt=con.createStatement();
+            String dbo="Insert Into Admin (Name,Email,Number,Password)values('"+admin.getUserName()+"','"+admin.getEmail()+"','"+admin.getMoblieNumber()+"','"+admin.getPassword()+"')";
+            smt.execute(dbo);
+            smt.close();
+            con.close();
             return true;
-        else
-            return false;
     }
     
     

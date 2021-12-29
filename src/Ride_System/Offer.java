@@ -14,15 +14,22 @@ import User_System.Driver;
  */
 public class Offer {
     float price=0;
-    Driver driver;
-    Client client;
+    String driver;
+    String client;
     
-    Offer(int price, Driver driver,Client client)
+   public Offer(int price, String driver,String client)
     {
         this.price=price;
         this.driver = driver;
         this.client=client;
     }
+
+  
+
+    public String getClient() {
+        return client;
+    }
+    
     public void setprice(int price)
     {
         this.price = price;
@@ -32,11 +39,11 @@ public class Offer {
         return price;
     }
 
-    public Driver getDriver() {
+    public String getDriver() {
         return driver;
     }
 
-    public void setDriver(Driver driver) {
+    public void setDriver(String driver) {
         this.driver = driver;
     }
     

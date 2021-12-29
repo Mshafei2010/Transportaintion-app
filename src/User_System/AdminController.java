@@ -34,9 +34,8 @@ public class AdminController {
       public void logout() {
         System.exit(0);
     } 
-    public boolean Signup(Admin admin) {
-      Register adminreg=new AdminRegister();
-      return adminmodel.insert(admin, adminreg);
+    public boolean Signup(Admin admin) throws SQLException {
+      return adminmodel.insert(admin);
     }
     
      public void verifyDriver(String name,Admin admin) throws ClassNotFoundException, SQLException
@@ -45,8 +44,14 @@ public class AdminController {
      }
      
       public ArrayList<Notification> Notifications(Admin admin) throws SQLException {
+          ArrayList<Notification> notification=Notification.RetriveNotification("Admin");
+          
+       return notification;
+    }
+        public ArrayList<Notification> DeleteNotifications(Admin admin) throws SQLException {
        return Notification.RetriveNotification("Admin");
     }
+      
     
 
 
