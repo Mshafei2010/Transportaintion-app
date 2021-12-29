@@ -31,70 +31,7 @@ public class Notification {
         
     }
 
-    public void Insert()
-    {
-        try {
-            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
-            
-            Statement smt=con.createStatement();
-            String dbo="Insert Into NotiicationCenter values('"+Message+"','"+Name+"','"+Type+"')";
-            smt.execute(dbo);
-            smt.close();
-            con.close();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(Notification.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    //to retrive all the Notifcation from the Notification Center Data Base
-    public static ArrayList<Notification>Retrive(Person person,String typ) throws SQLException
-    {
-          ArrayList<Notification>Notifys=new ArrayList<Notification>();
-        Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
-            Statement smt=con.createStatement();
-            ResultSet resultset=smt.executeQuery("SELECT * From NotiicationCenter");
-            while(resultset.next())
-            {
-                String Name=resultset.getString("Name");
-                if(Name.equalsIgnoreCase(person.getUserName()))
-                {
-                    String type=resultset.getString("Type");
-                    if(type.equals(type))
-                    {
-                        String Message=resultset.getString("Message");
-                       Notifys.add(new Notification(Message,typ,Name));
-                        
-                       
-                    }
-                }
-            }
-             con.close();
-             return Notifys;
-    }
-      public static ArrayList<Notification>RetriveNotification(String typ) throws SQLException
-    {
-          ArrayList<Notification>Notifys=new ArrayList<Notification>();
-        Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
-            Statement smt=con.createStatement();
-            ResultSet resultset=smt.executeQuery("SELECT * From NotiicationCenter");
-            while(resultset.next())
-            {
-               
-                    String type=resultset.getString("Type");
-                    if(type.equals(typ))
-                    {
-                        String Message=resultset.getString("Message");
-                        String Name=resultset.getString("Name");
-                       Notifys.add(new Notification(Message,typ,Name));
-                        
-                       
-                    }
-                
-            }
-             con.close();
-             return Notifys;
-    }
+  
      
     
     public void setMessage(String Message) {

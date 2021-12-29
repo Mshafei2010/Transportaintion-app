@@ -6,6 +6,7 @@
 package Ride_System;
 
 import NotificationCenter.Notification;
+import NotificationCenter.NotificationModel;
 import User_System.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,11 +16,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import sun.awt.image.OffScreenImage;
-/**
- *
- * @author mshaf
- */
+
+ 
 public class RideModel{
    
    
@@ -36,7 +34,7 @@ public class RideModel{
                 if(Uname.equalsIgnoreCase(ClientName)) {
                     
                     int price=resultset.getInt("price");
-                    String DName=resultset.getString("DName");
+                    String DName=resultset.getString("DriverName");
                     Offer offer= new Offer(price, DName, ClientName);
                     offers.add(offer);
                                        
@@ -90,7 +88,7 @@ public class RideModel{
         for(int i=0;i<Drivers.size();i++)
         {
             Notification notification=new Notification("New Request added from your favourite Areas", "Driver", Drivers.get(i).getUserName());
-            notification.Insert();
+            NotificationModel.Insert(notification);
         }
         
     }
@@ -116,21 +114,33 @@ public class RideModel{
     public void Notifyclient(String ClientName)
     {
         Notification notification =new Notification("New Offer Added To your Requested Ride ","Client",ClientName);
-        notification.Insert();
+         NotificationModel notificationModel=new NotificationModel();
+        notificationModel.Insert(notification);
+    }
+    public void NotifyDriver(String DriverName){
+         Notification notification =new Notification("Client Accepted your offer--> ","Driver",DriverName);
+         NotificationModel notificationModel=new NotificationModel();
+        notificationModel.Insert(notification);
     }
     
-    public  Ride pickOffer(Offer offers) {
-        
-       System.out.println("Not supported yet");
-        return null;
+    public  void pickOffer(Offer offer) {
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            String dbo = "Update Ride set Dname='"+offer.getDriver()+"' where CName='"+offer.getClient()+"'";
+            smt.execute(dbo);
+            dbo = "Update Ride set price="+offer.getprice()+" where CName='"+offer.getClient()+"'";
+            smt.execute(dbo);
+            con.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(RideModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
+      
     }
 
 
-    public ArrayList<Offer> getOffers() {/*
-        return offers;
-*/
-         return null;
-    }
+   
     public static Ride getCleintride(String Name)
     {
         
@@ -188,6 +198,28 @@ public class RideModel{
             Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);
         }
         return rides;
+     }
+     public void startmyRide(String DriverName)
+     {
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            String dbo = "Update Ride set State='"+"Started"+"' where Dname='"+DriverName+"' AND State='"+"Requested"+"'";
+            smt.execute(dbo);
+        } catch (SQLException ex) {
+            Logger.getLogger(RideModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+      public void endmyRide(String DriverName)
+     {
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            String dbo = "Update Ride set State='"+"Completed"+"' where Dname='"+DriverName+"' AND State='"+"Started"+"'";
+            smt.execute(dbo);
+        } catch (SQLException ex) {
+            Logger.getLogger(RideModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
      }
 
  

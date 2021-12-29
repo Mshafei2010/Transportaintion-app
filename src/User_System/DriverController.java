@@ -6,6 +6,7 @@
 package User_System;
 
 import NotificationCenter.Notification;
+import NotificationCenter.NotificationModel;
 import Ride_System.Offer;
 import Ride_System.Ride;
 import Ride_System.RideController;
@@ -50,7 +51,7 @@ public class DriverController {
         
     }
     public ArrayList<Notification> Notifications(Driver driver) throws SQLException {
-       return Notification.Retrive(driver,"Driver");
+       return NotificationModel.Retrive(driver,"Driver");
     }
     
     
@@ -60,6 +61,18 @@ public class DriverController {
        RideController ridecontroller =new RideController();
        ridecontroller.AddOffer(offer);
     }
+    public void StartRide(String Name){
+          RideController ridecontroller =new RideController();
+       ridecontroller.RideBegin(Name);
+    }
+    //To end the ride we need to call the controller to end it
+    //then we need to call the driver model to update the driver balance
+     public void EndRide(String Name){
+       RideController ridecontroller =new RideController();
+       ridecontroller.RideEnd(Name);
+       driverModel.updateBalance(Name);
+    }
+    
 
     
     
