@@ -5,8 +5,7 @@
  */
 package Ride_System;
 
-import User_System.Client;
-import User_System.Driver;
+import User_System.*;
 
 /**
  *
