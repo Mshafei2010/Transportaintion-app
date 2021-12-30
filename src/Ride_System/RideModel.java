@@ -141,16 +141,19 @@ public class RideModel{
 
 
    
-    public static Ride getCleintride(String Name)
+    public static ArrayList< Ride> getCleintrides(String Name)
     {
+        ArrayList<Ride>rides=new ArrayList<>();
         
          try {
              Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
              Statement smt=con.createStatement();
-             ResultSet resultset=smt.executeQuery("SELECT * From Ride,driver");
+             ResultSet resultset=smt.executeQuery("SELECT * From Ride");
                String src;
                String dest;
                String Uname;
+               String DName;
+               int rate;
              while(resultset.next())
              {
                  Uname=resultset.getString("CName");
@@ -158,12 +161,17 @@ public class RideModel{
                  
                  src=resultset.getString("src");
                  dest=resultset.getString("dest");
+                 DName=resultset.getString("Dname");
+                 rate=resultset.getInt("rate");
                  Ride ride=new Ride(Uname,src,dest);
-                 con.close();
-                 return ride;
+                 ride.setDname(DName);
+                 ride.setRate(rate);
+                 rides.add(ride);
                  
                 }
              }
+                con.close();
+                return rides;
          } catch (SQLException ex) {
              Logger.getLogger(RideModel.class.getName()).log(Level.SEVERE, null, ex);
          }
@@ -205,6 +213,17 @@ public class RideModel{
             Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
             Statement smt=con.createStatement();
             String dbo = "Update Ride set State='"+"Started"+"' where Dname='"+DriverName+"' AND State='"+"Requested"+"'";
+            smt.execute(dbo);
+        } catch (SQLException ex) {
+            Logger.getLogger(RideModel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
+     public void updaterate(Ride ride ,int rate)
+     {
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            String dbo = "Update Ride set rate="+rate+" where CName='"+ride.getClientName()+"' AND Dname='"+ride.getDname()+"'";
             smt.execute(dbo);
         } catch (SQLException ex) {
             Logger.getLogger(RideModel.class.getName()).log(Level.SEVERE, null, ex);

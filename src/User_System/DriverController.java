@@ -25,42 +25,46 @@ public class DriverController {
     public DriverController() {
      driverModel =new DriverModel();
     }
-
+     //done
     public boolean login(Driver driver){
        return driverModel.validate(driver);
     }
+    //done
       public void logout() {
             System.exit(0);
         }
-            
+       //done     
     public boolean SignUp(Driver driver) throws SQLException {
         
    
       return driverModel.insert(driver);
       
     }
-   
+   //done
     public void AddFavArea(String Area,Driver driver) {
         driverModel.InsertFavArea(driver,Area);
         
     }
-    
+    //done
     public List<Ride> listreqrides(Driver driver) {
        RideController ridecontoroller=new RideController();
        return ridecontoroller.getmyRides(driver);
         
     }
+    
+   //done
     public ArrayList<Notification> Notifications(Driver driver) throws SQLException {
        return NotificationModel.Retrive(driver,"Driver");
     }
     
-    
+    //done
     public void addOffer(Ride ride,int price,String Dname) {
         Offer offer;
        offer = new Offer(price, Dname, ride.getClientName());
        RideController ridecontroller =new RideController();
        ridecontroller.AddOffer(offer);
     }
+    //done
     public void StartRide(String Name){
           RideController ridecontroller =new RideController();
        ridecontroller.RideBegin(Name);
@@ -71,6 +75,10 @@ public class DriverController {
        RideController ridecontroller =new RideController();
        ridecontroller.RideEnd(Name);
        driverModel.updateBalance(Name);
+    }
+       public int getMybalance(Driver driver) {
+        return driverModel.retrivebalance(driver);
+        
     }
     
 

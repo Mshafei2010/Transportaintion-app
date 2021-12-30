@@ -15,6 +15,7 @@ public class Ride {
     protected String clientName;
     protected String src;
     protected String dest;
+    protected String Dname;
     int rate;
     Offer Cost;
     Ridespec spec;
@@ -77,6 +78,23 @@ public class Ride {
     public String getTitle() {
         return title;
     }
+
+    public String getDname() {
+        return Dname;
+    }
+
+    public void setDname(String Dname) {
+        this.Dname = Dname;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+    
     
     
 

@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class DriverModel {
  
-     
+     //done
     public boolean validate(Driver driver){
         try {
             Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
@@ -64,6 +64,45 @@ public class DriverModel {
             return false;
         } 
     }
+    
+     public int retrivebalance(Driver driver){
+        try {
+            Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
+            Statement smt=con.createStatement();
+            
+            ResultSet resultset=smt.executeQuery("SELECT * From driver");
+            while(resultset.next())
+            {
+                
+                String Name=resultset.getString("Name");
+                
+                if(Name.equalsIgnoreCase(driver.getUserName()))
+                {
+                     
+                    
+                    String password=resultset.getString("Password");
+                   
+                      
+                        int balance=resultset.getInt("DriverBalance");
+                       
+                        
+                        con.close();
+                        return balance;
+                        
+                        
+                    
+                }
+                
+            }
+            con.close();
+             return 0;
+        } catch (SQLException ex) {
+            Logger.getLogger(DriverModel.class.getName()).log(Level.SEVERE, null, ex);
+            return 0;
+        } 
+    }
+    
+    //done
        public static ArrayList<Driver> retrivependingDrivers(){
          ArrayList<Driver> pendingdrivers=new ArrayList<Driver>();
         try {
@@ -95,7 +134,7 @@ public class DriverModel {
         return pendingdrivers;    
 }
        
-    
+    //done
     public void InsertFavArea(Driver driver,String area) {
         try {
             Connection con=DriverManager.getConnection("jdbc:sqlite:transportationDB.db");
@@ -107,7 +146,7 @@ public class DriverModel {
             Logger.getLogger(Driver.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    //done
       public boolean insert(Driver driver) throws SQLException {  
         Notification Notify = new Notification("New Pending Registeration From Driver -->","Admin",driver.getUserName());
           NotificationModel.Insert(Notify);
@@ -122,6 +161,7 @@ public class DriverModel {
     
 
 }
+      //done
       public void updateBalance(String DriverName){
           
         try {

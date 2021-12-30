@@ -72,6 +72,7 @@ public class DriverView {
                     System.out.println("click (3) to - list all Notification");
                      System.out.println("click (4) to - Start Your Ride");
                       System.out.println("click (5) to - End Your Ride");
+                      System.out.println("click (6) to - get your balance");
                      String choice2=cin.next();
                      if(choice2.equalsIgnoreCase("1"))
                      {
@@ -110,6 +111,9 @@ public class DriverView {
                      }
                       else if(choice2.equalsIgnoreCase("5")){
                           driverController.EndRide(name);
+                      }
+                      else if(choice2.equalsIgnoreCase("6")){
+                          System.out.println("Your current Balance is-->"+driverController.getMybalance(driver));
                       }
                  }
                  else

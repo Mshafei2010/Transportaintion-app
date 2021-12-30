@@ -56,13 +56,18 @@ public class ClientController {
         RideController rideController=new RideController();
         rideController.Clientpickoffer(offer);
     }
-    //List all Rides From The Ride history
-    //list all rides from the SAME PLACE FAV AREA
-    //LIST all 
-    /*public List selectOffer(Offer offer) {
-         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }*/
     
+    //LIST all history
+   public ArrayList<Ride>GetMyRides(Client client)
+   {
+       RideController rideController=new RideController();
+       return rideController.getclientRides(client);
+   }
+    public void RateRide(int Rate,Ride ride)
+    {
+        RideController rideController=new RideController();
+        rideController.rate(ride,Rate);
+    }
 
     
     

@@ -48,6 +48,15 @@ public class RideController{
       public void RideEnd(String Name){
           ridemodel.endmyRide(Name);
      }
+      public ArrayList<Ride>getclientRides(Client client){
+        ArrayList<Ride>rides=RideModel.getCleintrides(client.getUserName());
+        return  rides;
+    }
+      public  void rate(Ride ride,int Rate)
+      {
+          ride.setRate(Rate);
+          ridemodel.updaterate(ride,Rate);
+      }
      
     
     

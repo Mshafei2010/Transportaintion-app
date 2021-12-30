@@ -69,6 +69,7 @@ public class ClientView {
                     System.out.println("click (1) to - Get Your Notifications");
                     System.out.println("click (2) to - list all Offers");
                      System.out.println("click (3) to - Request Ride");
+                     System.out.println("click (4) to - List my History");
                     int choice2=cin.nextInt();
                     if(choice2==1){
                         ArrayList<Notification> Notify=clientcontroller.Notifications(client);
@@ -93,6 +94,26 @@ public class ClientView {
                          System.out.println("Enter your dest: ");
                          String dest=cin.next();
                          Ride ride=clientcontroller.RequestRide(client, src, dest);
+                    }
+                    else if(choice2 ==4)
+                    {
+                         ArrayList<Ride>rideHistory=new ArrayList<Ride>();
+                        rideHistory=clientcontroller.GetMyRides(client);
+                         for (int i=0;i<rideHistory.size();i++) {
+                            System.out.println((i+1)+"-from--->"+rideHistory.get(i).getSrc()+"//to-->"+rideHistory.get(i).getDest()+"BY-->"+rideHistory.get(i).getDname() +"Rate-->"+rideHistory.get(i).getRate());
+                        }
+                         System.out.println("Enter Number of ride you want to rate"); 
+                         
+                         int num=cin.nextInt();
+                         if(num<rideHistory.size() &&num>0){
+                          System.out.println("Enter rate"); 
+                          int Rate=cin.nextInt();
+                         clientcontroller.RateRide(Rate, rideHistory.get(num-1));
+                         }
+                         else
+                         {
+                             System.out.println("UNvalid Ride Number\n");
+                         }
                     }
                     
                     
